@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  devise :database_authenticatable, :rememberable, :validatable, :timeoutable
+  
   has_many :user_courses
   has_many :user_subjects
   has_many :user_tasks
@@ -13,5 +15,4 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :follower, through: :passive_relationships, source: :follower
 
-  has_secure_password
 end
