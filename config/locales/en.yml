@@ -22,3 +22,6 @@ en:
     profile: "Profile"
     setting: "Settings"
     error: "Error"
+  user:
+    update: "Update"
+    change_password: "change password"

@@ -1,0 +1,33 @@
+<h2><%= t "user.edit" %> <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for resource, as: resource_name, url: user_registration_path, 
+  html: {method: :patch} do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <%= f.label :name %> <i>
+    <%= f.text_field :name, autofocus: true, class: "form-control" %>
+  </div>
+
+  <h4 id="change" class="form-group"><%= t("user.change_password") %></h4>
+  <div id="password">
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :current_password %><br />
+    <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.submit t("user.update"), class: "btn btn-default btn-primary"  %>
+  </div>
+<% end %>
