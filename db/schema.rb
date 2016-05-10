@@ -11,27 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160510031653) do
+=======
+ActiveRecord::Schema.define(version: 20160510015945) do
+>>>>>>> Create Subject With Task
 
   create_table "activities", force: :cascade do |t|
-    t.integer  "User_id"
+    t.integer  "user_id"
     t.integer  "action_type"
     t.integer  "target_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "activities", ["User_id"], name: "index_activities_on_User_id"
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id"
 
   create_table "course_subjects", force: :cascade do |t|
-    t.integer  "Course_id"
-    t.integer  "Subject_id"
+    t.integer  "course_id"
+    t.integer  "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "course_subjects", ["Course_id"], name: "index_course_subjects_on_Course_id"
-  add_index "course_subjects", ["Subject_id"], name: "index_course_subjects_on_Subject_id"
+  add_index "course_subjects", ["course_id"], name: "index_course_subjects_on_course_id"
+  add_index "course_subjects", ["subject_id"], name: "index_course_subjects_on_subject_id"
 
   create_table "courses", force: :cascade do |t|
     t.string   "title"
@@ -62,47 +66,47 @@ ActiveRecord::Schema.define(version: 20160510031653) do
     t.string   "title"
     t.text     "description"
     t.integer  "status"
-    t.integer  "Subject_id"
+    t.integer  "subject_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "tasks", ["Subject_id"], name: "index_tasks_on_Subject_id"
+  add_index "tasks", ["subject_id"], name: "index_tasks_on_subject_id"
 
   create_table "user_courses", force: :cascade do |t|
-    t.integer  "Course_id"
-    t.integer  "User_id"
+    t.integer  "course_id"
+    t.integer  "user_id"
     t.integer  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "user_courses", ["Course_id"], name: "index_user_courses_on_Course_id"
-  add_index "user_courses", ["User_id"], name: "index_user_courses_on_User_id"
+  add_index "user_courses", ["course_id"], name: "index_user_courses_on_course_id"
+  add_index "user_courses", ["user_id"], name: "index_user_courses_on_user_id"
 
   create_table "user_subjects", force: :cascade do |t|
-    t.integer  "Subject_id"
-    t.integer  "User_id"
-    t.integer  "User_Course_id"
+    t.integer  "subject_id"
+    t.integer  "user_id"
+    t.integer  "user_course_id"
     t.integer  "status"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
-  add_index "user_subjects", ["Subject_id"], name: "index_user_subjects_on_Subject_id"
-  add_index "user_subjects", ["User_Course_id"], name: "index_user_subjects_on_User_Course_id"
-  add_index "user_subjects", ["User_id"], name: "index_user_subjects_on_User_id"
+  add_index "user_subjects", ["subject_id"], name: "index_user_subjects_on_subject_id"
+  add_index "user_subjects", ["user_course_id"], name: "index_user_subjects_on_user_course_id"
+  add_index "user_subjects", ["user_id"], name: "index_user_subjects_on_user_id"
 
   create_table "user_tasks", force: :cascade do |t|
-    t.integer  "User_id"
-    t.integer  "Task_id"
+    t.integer  "user_id"
+    t.integer  "task_id"
     t.integer  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "user_tasks", ["Task_id"], name: "index_user_tasks_on_Task_id"
-  add_index "user_tasks", ["User_id"], name: "index_user_tasks_on_User_id"
+  add_index "user_tasks", ["task_id"], name: "index_user_tasks_on_task_id"
+  add_index "user_tasks", ["user_id"], name: "index_user_tasks_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -115,7 +119,7 @@ ActiveRecord::Schema.define(version: 20160510031653) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "role"
+    t.integer  "role",                   default: 0
     t.string   "avatar"
     t.string   "name"
   end
