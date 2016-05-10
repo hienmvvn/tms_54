@@ -1,0 +1,20 @@
+<div class="form-task-field">
+  <div class="col-sm-12">
+    <i class="material-icons">
+      <%= f.hidden_field :_destroy %>
+      <%= link_to t("subject.remove_task"), "#", class: "remove_fields" %>
+    </i>
+  </div>
+  <div class="form-group">
+    <%= f.label :title, t("form.title"), class: "col-sm-1 control-label" %>
+    <div class="col-sm-11">
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, t("form.description"), class: "col-sm-1 control-label" %>
+    <div class="col-sm-11">
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,9 @@
 </head>
 <body>
   <%= render "layouts/header" %>
+  <% flash.each do |notice_type, notice| %>
+    <div class="alert alert-<%= notice_type %>"><%= notice %></div>
+  <% end %>
   <div class="container">
     <%= yield %>
     <%= render "layouts/footer" %>

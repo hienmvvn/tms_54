@@ -25,3 +25,20 @@ en:
   user:
     update: "Update"
     change_password: "change password"
+  form:
+    title: "Title"
+    description: "Description"
+    submit: "Submit"
+    content_error: "Form content %{count} "
+    error: "error"
+  flash:
+    create_success: "Create Successfully"
+    create_failed: "Create failed"
+  admin: "Admin"
+  subject:
+    create: "Create New Subject"
+    tasks: "List Task"
+    remove_task: "Remove Task"
+    create_task: "Create Task"
+    error:
+      at_least_two_task: "Subject must have at least two tasks"

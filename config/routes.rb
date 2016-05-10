@@ -7,4 +7,10 @@ Rails.application.routes.draw do
   
   root "static_pages#home"
   resources :users, only: [:show]
+
+  namespace :admin do
+    root "subjects#index"
+
+    resources :subjects, only: [:index, :new, :create]
+  end
 end
