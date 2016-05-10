@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     root "subjects#index"
 
     resources :subjects
+    resources :courses, only: [:new, :create, :index]
   end
 end
