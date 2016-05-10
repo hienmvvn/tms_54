@@ -15,7 +15,8 @@ class Subject < ActiveRecord::Base
 
   private
   def validate
-    errors.add :tasks,
-      I18n.t("subject.error.at_least_two_task") unless tasks.count > 1
+    if tasks.size < 2
+      errors.add :tasks, I18n.t("subject.error.at_least_two_task")
+    end
   end
 end

@@ -34,11 +34,21 @@ en:
   flash:
     create_success: "Create Successfully"
     create_failed: "Create failed"
+    delete_success: "Delete Successfully"
+    delete_failed: "Delete Failed"
   admin: "Admin"
   subject:
+    all_subject: "All Subject"
     create: "Create New Subject"
     tasks: "List Task"
     remove_task: "Remove Task"
     create_task: "Create Task"
     error:
       at_least_two_task: "Subject must have at least two tasks"
+      no_subject_found: "There is no subject with id: %{id}"
+  table:
+    title: "Title"
+    option: "Option"
+    delete: "Delete"
+    update: "Update"
+  confirm: "Are you sure"

@@ -1,0 +1,9 @@
+<tr>
+  <td>
+    <%= subject.title %>
+  </td>
+  <td>
+    <%= link_to t("table.delete"), [:admin, subject], method: :delete,
+      data: {confirm: t("confirm")} %>
+  </td>
+</tr>

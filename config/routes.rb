@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root "subjects#index"
 
-    resources :subjects, only: [:index, :new, :create]
+    resources :subjects, expect: [:edit, :update]
   end
 end
