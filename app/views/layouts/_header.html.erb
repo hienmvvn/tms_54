@@ -11,7 +11,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to t("profile"), "#" %></li>
-              <li><%= link_to t("setting"), "#" %></li>
+              <li><%= link_to t("layout.setting"), edit_user_registration_path %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to t("logout"), destroy_user_session_path, method: :delete %>
