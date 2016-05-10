@@ -1,0 +1,6 @@
+<h3><%= t("user.my_course") %> </h3>
+<% @courses.each do |course|%>
+  <p class="button">
+    <%= course_status course %>
+  </p>
+<% end %>

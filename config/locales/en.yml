@@ -25,6 +25,7 @@ en:
   user:
     update: "Update"
     change_password: "change password"
+    my_course: "My Course"
   form:
     title: "Title"
     description: "Description"
