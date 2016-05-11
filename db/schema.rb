@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160510031653) do
-=======
-ActiveRecord::Schema.define(version: 20160510015945) do
->>>>>>> Create Subject With Task
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id"
