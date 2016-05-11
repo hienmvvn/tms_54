@@ -1,6 +1,35 @@
-<li>
-  <%= current_user.name %>
-</li>
-<li>
-  <%= current_user.email %>
-</li>
+<h3 class="text-center text-uppercase">
+  <%= @user.name %><%= t "user.show.profile"%>
+</h3>
+<%= render "follow_form" %>
+<div class="row">
+  <div class="col-md-4">
+    <div class="col-md-8 col-md-offset-2 center">
+      <img src="http://cdn.grumpycats.com/wp-content/uploads/2016/02/12654647_974282002607537_7798179861389974677_n-758x758.jpg" 
+        alt=<%= @user.name %> <%= t "user.show.avatar" %> 
+        class="img-responsive img-circle">
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="table-responsive text-capitalize">
+      <table class="table table-striped">
+        <tr>
+          <td class="col-md-4"><%= t "user.show.name" %></td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td><%= t "user.show.email" %></td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td><%= t "user.show.address" %></td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td><%= t "user.show.phone" %></td>
+          <td><%= @user.name %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
