@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= course.title %>
+    <%= link_to course.title, [:admin, course] %>
   </td>
   <td>
     <%= link_to t("table.update"), edit_admin_course_path(course) %>

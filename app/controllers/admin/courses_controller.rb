@@ -1,5 +1,5 @@
 class Admin::CoursesController < ApplicationController
-  before_action :find_course, only: [:edit, :update, :destroy]
+  before_action :find_course, only: [:edit, :update, :destroy, :show]
 
   def index
     @courses = Course.paginate page: params[:page],
@@ -31,6 +31,7 @@ class Admin::CoursesController < ApplicationController
       flash[:success] = t "flash.update_success"
       redirect_to admin_courses_path
     else
+      flash[:danger] = t "flash.update_failed"
       @subjects = Subject.all
       render :edit
     end
@@ -46,9 +47,15 @@ class Admin::CoursesController < ApplicationController
     end
   end
 
+  def show
+    @users = User.supervisor
+    @subjects = @course.subjects.paginate page: params[:page],
+      per_page: Settings.paginate.number_per_page
+  end
+
   private
   def course_params
-    params.require(:course).permit :title, :description, subject_ids: []
+    params.require(:course).permit :title, :description, subject_ids: [], user_ids: []
   end
 
   def find_course

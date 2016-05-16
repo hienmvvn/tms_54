@@ -28,6 +28,7 @@ en:
     change_password: "change password"
     my_course: "My Course"
     my_subject: "My Subject"
+    all_user: "All User"
   form:
     title: "Title"
     description: "Description"
