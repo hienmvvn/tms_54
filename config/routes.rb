@@ -14,6 +14,6 @@ Rails.application.routes.draw do
     root "subjects#index"
 
     resources :subjects
-    resources :courses, except: [:destroy, :show]
+    resources :courses
   end
 end
