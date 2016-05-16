@@ -59,4 +59,6 @@ en:
     delete: "Delete"
     update: "Update"
   confirm: "Are you sure"
-
+  course:
+    all_course: "All Course"
+    create: "Create New Course"
