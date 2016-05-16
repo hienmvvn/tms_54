@@ -38,7 +38,6 @@ en:
     create_failed: "Create failed"
     delete_success: "Delete Successfully"
     delete_failed: "Delete Failed"
-    delete_failed: "Delete Failed"
     update_success: "Update Successfully"
     update_failed: "Update Failed"
   admin: "Admin"
@@ -62,3 +61,6 @@ en:
   course:
     all_course: "All Course"
     create: "Create New Course"
+    update: "Update Course"
+    error:
+      no_course_found: "There is no course with id: %{id}"
