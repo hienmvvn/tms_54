@@ -3,7 +3,7 @@ module UsersHelper
     if user_course.free?
       content_tag :div, user_course.course.title, class: "btn btn-default"
     elsif user_course.in_process?
-      link_to course_path(user_course) do
+      link_to user_course_path(user_course) do
         content_tag :div, user_course.course.title, class: "btn btn-success"
       end
     end
@@ -13,7 +13,7 @@ module UsersHelper
     if user_subject.free?
       content_tag :div, user_subject.subject.title, class: "btn btn-default"
     elsif user_subject.in_process?
-      link_to("#") do
+      link_to user_subject_path(user_subject) do
         content_tag :div, user_subject.subject.title, class: "btn btn-success"
       end
     end

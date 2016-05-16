@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   
   root "static_pages#home"
   resources :users, only: [:show]
-  resources :courses, only: [:show]
+  resources :user_courses, only: [:show]
+  resources :user_subjects, only: [:show]
   
   namespace :admin do
     root "subjects#index"

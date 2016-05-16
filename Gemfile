@@ -30,7 +30,7 @@ gem "jquery-ui-rails"
 gem "config"
 
 gem "materialize-sass"
-
+gem "cancancan", "~> 1.10"
 gem "devise"
 gem "sdoc", "~> 0.4.0", group: :doc
 
