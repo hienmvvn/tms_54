@@ -10,9 +10,8 @@
       <%= link_to t("table.delete"), [:admin, course], method: :delete,
         data: {confirm: t("confirm")} %>
     </td>
-  <% else %>
-    <td>
-      <%= t "table.no_option_available" %>
-    </td>
   <% end %>
+  <td id="course-status-form-<%= course.id %>">
+    <%= render "status_form", course: course %>
+  </td>
 </tr>

@@ -1,39 +1,47 @@
 class Admin::CoursesController < ApplicationController
   load_and_authorize_resource
+  before_action :load_subjects, only: [:new, :create, :edit, :update]
+  before_action :load_user, only: [:edit, :update]
 
   def index
     @courses = Course.paginate page: params[:page],
       per_page: Settings.paginate.number_per_page
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
-    @course = Course.new
-    @subjects = Subject.all
+    @users = User.not_admin
   end
 
   def create
     @course = Course.new course_params
     if @course.save
       flash[:success] = t "flash.create_success"
-      redirect_to admin_courses_path
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
-      @subjects = Subject.all
+      @users = User.not_admin
       render :new
     end
   end
 
   def edit
-    @subjects = Subject.all
-    @users = User.not_admin
   end
 
   def update
     if @course.update_attributes course_params
       flash[:success] = t "flash.update_success"
-      redirect_to admin_courses_path
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
       flash[:danger] = t "flash.update_failed"
-      @subjects = Subject.all
       render :edit
     end
   end
@@ -61,6 +69,15 @@ class Admin::CoursesController < ApplicationController
 
   private
   def course_params
-    params.require(:course).permit :title, :description, subject_ids: [], user_ids: []
+    params.require(:course).permit :title, :description, :status,
+      subject_ids: [], user_ids: []
+  end
+
+  def load_subjects
+    @subjects = Subject.all
+  end
+
+  def load_user
+    @users = User.not_admin.not_in_other_course
   end
 end

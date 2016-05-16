@@ -1,0 +1,3 @@
+$('#course-status-form-<%= @course.id %>').html('<%= j render "status_form", course: @course %>');
+$('#flash-notice').html('<%= j render "layouts/flash" %>');
+<% flash.clear %>

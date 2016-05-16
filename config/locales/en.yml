@@ -36,6 +36,8 @@ en:
     submit: "Submit"
     content_error: "Form content %{count} "
     error: "error"
+    start_course: "Start Course"
+    finish_course: "Finish Course"
   flash:
     create_success: "Create Successfully"
     create_failed: "Create failed"

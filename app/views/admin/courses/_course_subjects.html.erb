@@ -26,11 +26,10 @@
           <td>
             <%= link_to t("table.update"), edit_admin_subject_path(subject) %>
           </td>
-        <% else %>
-          <td>
-            <%= t "table.no_option_available" %>
-          </td>
         <% end %>
+        <td>
+          <%= link_to t("form.submit"), "#" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

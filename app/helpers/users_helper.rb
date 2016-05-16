@@ -4,7 +4,7 @@ module UsersHelper
       link_to user_course.course.title,
         [:admin, user_course.course], class: "btn btn-primary"
     else
-      if user_course.free?
+      if user_course.free? || user_course.closed?
         content_tag :div, user_course.course.title, class: "btn btn-default"
       elsif user_course.in_process?
         link_to user_course.course.title,
