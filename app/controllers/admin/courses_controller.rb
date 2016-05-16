@@ -1,5 +1,5 @@
 class Admin::CoursesController < ApplicationController
-  before_action :find_course, only: [:edit, :update, :destroy, :show]
+  load_and_authorize_resource
 
   def index
     @courses = Course.paginate page: params[:page],
@@ -24,6 +24,7 @@ class Admin::CoursesController < ApplicationController
 
   def edit
     @subjects = Subject.all
+    @users = User.not_admin
   end
 
   def update
@@ -48,21 +49,18 @@ class Admin::CoursesController < ApplicationController
   end
 
   def show
-    @users = User.supervisor
-    @subjects = @course.subjects.paginate page: params[:page],
+    @subjects = @course.subjects.paginate page: params[:page_subject],
       per_page: Settings.paginate.number_per_page
+    @users = @course.users.paginate page: params[:page_user],
+      per_page: Settings.paginate.number_per_page
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private
   def course_params
     params.require(:course).permit :title, :description, subject_ids: [], user_ids: []
-  end
-
-  def find_course
-    @course = Course.find_by id: params[:id]
-    unless @course
-      flash[:danger] = t "course.error.no_course_found", id: params[:id]
-      redirect_to admin_courses_path
-    end
   end
 end

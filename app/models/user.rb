@@ -16,4 +16,10 @@ class User < ActiveRecord::Base
     foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :follower, through: :passive_relationships, source: :follower
+
+  scope :not_admin, ->{where.not role: User.roles[:admin]}
+
+  def is_user? user
+    self == user
+  end
 end

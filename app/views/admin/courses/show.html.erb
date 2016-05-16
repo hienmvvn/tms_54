@@ -7,35 +7,14 @@
     </div>
     <div class="col-sm-9">
       <div class="row">
-        <div class="col-sm-12">
-          <h4>
-            <%= t "subject.all_subject" %>
-          </h4>
-        </div>
-        <div class="col-sm-12">
-          <%= render "admin/subjects/index" %>
+        <div class="col-sm-12" id="course-subjects">
+          <%= render "course_subjects" %>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12">
-          <h4>
-            <%= t "user.all_user" %>
-          </h4>
+        <div class="col-sm-12" id="course-users">
+          <%= render "course_users" %>
         </div>
-        <%= form_for [:admin, @course], html: {class: "form-horizontal"} do |f| %>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-sm-12">
-                <%= f.collection_check_boxes :user_ids, @users, :id, :name %>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-11">
-              <%= f.submit t("form.submit"), class: "btn btn-primary" %>
-            </div>
-          </div>
-        <% end %>
       </div>
     </div>
   </div>

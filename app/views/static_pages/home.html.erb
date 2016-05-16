@@ -2,7 +2,7 @@
 <% if user_signed_in? %>
   <h3><%= t "user.my_course" %> </h3>
   <% @courses.each do |user_course| %>
-    <p class="button">
+    <p>
       <%= user_course_status user_course %>
     </p>
   <% end %>
