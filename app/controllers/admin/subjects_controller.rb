@@ -1,5 +1,5 @@
 class Admin::SubjectsController < ApplicationController
-  before_action :find_subject, only: [:destroy]
+  before_action :find_subject, only: [:destroy, :edit, :update]
 
   def index
     @subjects = Subject.paginate page: params[:page],
@@ -33,6 +33,23 @@ class Admin::SubjectsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @subject.validate_subject subject_params
+    if @subject.errors.count > 0
+      render :edit
+    else
+      if @subject.update_attributes subject_params
+        flash[:success] = t "flash.update_success"
+        redirect_to admin_subjects_path
+      else
+        render :edit
+      end
+    end
+  end
+
   private
   def subject_params
     params.require(:subject).permit :title, :description,
@@ -40,7 +57,7 @@ class Admin::SubjectsController < ApplicationController
   end
 
   def find_subject
-    @subject = Subject.find_by params[:id]
+    @subject = Subject.find_by id: params[:id]
     unless @subject
       flash[:danger] = t "subject.error.no_subject_found", id: params[:id]
       redirect_to admin_subjects_path
