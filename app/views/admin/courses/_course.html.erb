@@ -5,4 +5,8 @@
   <td>
     <%= link_to t("table.update"), edit_admin_course_path(course) %>
   </td>
+  <td>
+    <%= link_to t("table.delete"), [:admin, course], method: :delete,
+      data: {confirm: t("confirm")} %>
+  </td>
 </tr>

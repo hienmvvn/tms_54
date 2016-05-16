@@ -1,5 +1,5 @@
 class Admin::CoursesController < ApplicationController
-  before_action :find_course, only: [:edit, :update]
+  before_action :find_course, only: [:edit, :update, :destroy]
 
   def index
     @courses = Course.paginate page: params[:page],
@@ -33,6 +33,16 @@ class Admin::CoursesController < ApplicationController
     else
       @subjects = Subject.all
       render :edit
+    end
+  end
+
+  def destroy
+    if @course.destroy
+      flash[:success] = t "flash.delete_success"
+      redirect_to admin_courses_path
+    else
+      flash[:danger] = t "flash.delete_failed"
+      redirect_to admin_courses_path
     end
   end
 
