@@ -1,0 +1,25 @@
+<h3>
+  <%= t "user.all_user_in_course" %>
+</h3>
+<h3>
+  <%= link_to t("course.assign_user"), edit_admin_course_path(@course), class: "btn btn-primary" %>
+</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= t "table.name" %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.name %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users, param_name: :page_user %>

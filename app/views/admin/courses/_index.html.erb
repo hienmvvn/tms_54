@@ -1,16 +1,16 @@
 <table class="table table-striped">
   <thead>
-  <tr>
-    <th>
-      <%= t "table.title" %>
-    </th>
-    <th>
-      <%= t "table.option" %>
-    </th>
-  </tr>
+    <tr>
+      <th>
+        <%= t "table.title" %>
+      </th>
+      <th>
+        <%= t "table.option" %>
+      </th>
+    </tr>
   </thead>
   <tbody>
-  <%= render @courses %>
+    <%= render @courses %>
   </tbody>
 </table>
 <%= will_paginate @courses %>

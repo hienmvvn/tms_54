@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  $('.pagination a').attr('data-remote', 'true')
+
   $('#change').click(function(){
     $('#password').slideToggle('slow');
   });

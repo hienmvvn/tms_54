@@ -29,6 +29,7 @@ en:
     my_course: "My Course"
     my_subject: "My Subject"
     all_user: "All User"
+    all_user_in_course: "All User In Course"
   form:
     title: "Title"
     description: "Description"
@@ -43,6 +44,7 @@ en:
     update_success: "Update Successfully"
     update_failed: "Update Failed"
   admin: "Admin"
+  supervisor: "Supervisor"
   subject:
     all_subject: "All Subject"
     create: "Create New Subject"
@@ -59,6 +61,8 @@ en:
     option: "Option"
     delete: "Delete"
     update: "Update"
+    name: "Name"
+    no_option_available: "No Obtion available"
   confirm: "Are you sure"
   course:
     all_course: "All Course"
@@ -66,3 +70,4 @@ en:
     update: "Update Course"
     error:
       no_course_found: "There is no course with id: %{id}"
+    assign_user: "Assign User To Course"

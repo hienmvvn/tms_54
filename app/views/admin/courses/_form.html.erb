@@ -1,24 +1,44 @@
 <%= form_for [:admin, @course], html: {class: "form-horizontal"} do |f| %>
   <%= render "shared/error_notice", object: @course %>
-  <div class="form-group">
-    <%= f.label :title, t("form.title"), class: "col-sm-1 control-label" %>
-    <div class="col-sm-11">
-      <%= f.text_field :title, class: "form-control" %>
+  <% if can? :manage, :all %>
+    <div class="form-group">
+      <%= f.label :title, t("form.title"), class: "col-sm-1 control-label" %>
+      <div class="col-sm-11">
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :description, t("form.description"), class: "col-sm-1 control-label" %>
-    <div class="col-sm-11">
-      <%= f.text_area :description, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :description, t("form.description"), class: "col-sm-1 control-label" %>
+      <div class="col-sm-11">
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
     </div>
-  </div>
+    <h3>
+      <%= t "subject.all_subject" %>
+    </h3>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-12">
+          <%= f.collection_check_boxes :subject_ids, @subjects, :id, :title %>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <h3>
-    <%= t "subject.all_subject" %>
+    <%= t "user.all_user_in_course" %>
   </h3>
   <div class="form-group">
     <div class="row">
       <div class="col-sm-12">
-        <%= f.collection_check_boxes :subject_ids, @subjects, :id, :title %>
+        <% @users.each do |user| %>
+          <% if user.is_user? current_user %>
+            <%= hidden_field_tag "course[user_ids][]", user.id %>
+          <% end %>
+          <%= check_box_tag "course[user_ids][]",
+            user.id, checked = @course.users.include?(user),
+            disabled: user.is_user?(current_user) %>
+          <%= label_tag "course[user_ids][][#{user.id}]", user.name + " =|= " + user.role %>
+        <% end %>
       </div>
     </div>
   </div>

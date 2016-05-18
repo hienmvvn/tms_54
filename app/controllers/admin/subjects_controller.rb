@@ -1,8 +1,8 @@
 class Admin::SubjectsController < ApplicationController
-  before_action :find_subject, only: [:destroy, :edit, :update]
+  load_and_authorize_resource
 
   def index
-    @subjects = Subject.paginate page: params[:page],
+    @subjects.paginate page: params[:page],
       per_page: Settings.paginate.number_per_page
   end
 
@@ -54,13 +54,5 @@ class Admin::SubjectsController < ApplicationController
   def subject_params
     params.require(:subject).permit :title, :description,
       tasks_attributes: [:id, :title, :description, :_destroy]
-  end
-
-  def find_subject
-    @subject = Subject.find_by id: params[:id]
-    unless @subject
-      flash[:danger] = t "subject.error.no_subject_found", id: params[:id]
-      redirect_to admin_subjects_path
-    end
   end
 end

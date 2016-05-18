@@ -5,7 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to t("layout.home"), root_path %></li>
         <% if user_signed_in? %>
-          <% if current_user.admin? %>
+          <% if current_user.admin? || current_user.supervisor? %>
             <li>
               <%= link_to t("admin"), admin_root_path %>
             </li>

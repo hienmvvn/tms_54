@@ -2,11 +2,17 @@
   <td>
     <%= link_to course.title, [:admin, course] %>
   </td>
-  <td>
-    <%= link_to t("table.update"), edit_admin_course_path(course) %>
-  </td>
-  <td>
-    <%= link_to t("table.delete"), [:admin, course], method: :delete,
-      data: {confirm: t("confirm")} %>
-  </td>
+  <% if can? :manage, :all %>
+    <td>
+      <%= link_to t("table.update"), edit_admin_course_path(course) %>
+    </td>
+    <td>
+      <%= link_to t("table.delete"), [:admin, course], method: :delete,
+        data: {confirm: t("confirm")} %>
+    </td>
+  <% else %>
+    <td>
+      <%= t "table.no_option_available" %>
+    </td>
+  <% end %>
 </tr>
