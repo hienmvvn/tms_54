@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :validatable, :timeoutable
 
-  enum role: [:user, :supervisor, :admin]
+  enum role: [:trainee, :supervisor, :admin]
 
   has_many :user_courses, dependent: :destroy
   has_many :user_subjects
@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   has_many :follower, through: :passive_relationships, source: :follower
 
   scope :not_admin, ->{where.not role: User.roles[:admin]}
+  scope :not_in_other_course, ->{where("id NOT IN(SELECT user_id FROM user_courses
+    WHERE(status = #{Course.statuses[:in_process]}))
+    OR id IN(SELECT id FROM users WHERE role = #{User.roles[:supervisor]})")}
 
   def is_user? user
     self == user

@@ -5,4 +5,6 @@ class UserCourse < ActiveRecord::Base
   belongs_to :user
 
   has_many :user_subjects
+
+  scope :free_course, ->{where status: UserCourse.statuses[:free]}
 end

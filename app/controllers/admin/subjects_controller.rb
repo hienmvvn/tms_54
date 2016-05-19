@@ -2,7 +2,7 @@ class Admin::SubjectsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @subjects.paginate page: params[:page],
+    @subjects = Subject.paginate page: params[:page],
       per_page: Settings.paginate.number_per_page
   end
 

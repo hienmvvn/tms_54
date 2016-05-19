@@ -4,6 +4,10 @@
       <h3>
         <%= @course.title %>
       </h3>
+      <br>
+      <div class="row" id="course-status-form-<%= @course.id %>">
+        <%= render "status_form", course: @course %>
+      </div>
     </div>
     <div class="col-sm-9">
       <div class="row">
