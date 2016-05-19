@@ -1,0 +1,9 @@
+<%= form_for [:admin, course_subject], remote: true do |f| %>
+  <% if course_subject.in_process? %>
+    <%= f.hidden_field :status, value: :closed %>
+    <%= f.submit t("form.finish_subject"), class: "btn btn-default" %>
+  <% else %>
+    <%= f.hidden_field :status, value: :in_process %>
+    <%= f.submit t("form.start_subject"), class: "btn btn-primary" %>
+  <% end %>
+<% end %>

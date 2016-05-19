@@ -1,3 +1,5 @@
 $('#course-status-form-<%= @course.id %>').html('<%= j render "status_form", course: @course %>');
+$('#list-course-subject')
+  .html('<%= j render "list_course_subjects", course_subjects: @course.course_subjects %>');
 $('#flash-notice').html('<%= j render "layouts/flash" %>');
 <% flash.clear %>

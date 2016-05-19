@@ -38,6 +38,8 @@ en:
     error: "error"
     start_course: "Start Course"
     finish_course: "Finish Course"
+    start_subject: "Start Subject"
+    finish_subject: "Finish Subject"
   flash:
     create_success: "Create Successfully"
     create_failed: "Create failed"
@@ -57,6 +59,7 @@ en:
       at_least_two_task: "Subject must have at least two tasks"
       no_subject_found: "There is no subject with id: %{id}"
       cannot_be_blank: "Can not be blank"
+    course_must_be_actived: "Active The Course Before Start Subject"
     update: "Update Subject"
   table:
     title: "Title"
