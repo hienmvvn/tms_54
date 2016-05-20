@@ -12,6 +12,7 @@ class Course < ActiveRecord::Base
   after_update :assign_subject_to_trainee, if: :status_changed_to_in_process?
   after_update :remove_trainee_from_free_course, if: :status_changed_to_in_process?
   after_update :close_all_user_course, if: :status_changed_to_closed?
+  after_update :close_all_course_subject, if: :status_changed_to_closed?
 
   private
   def assign_subject_to_trainee
@@ -35,6 +36,12 @@ class Course < ActiveRecord::Base
     users.trainee.each do |trainee|
       user_course = trainee.user_courses.find_by course_id: id
       user_course.update_attributes status: :closed
+    end
+  end
+
+  def close_all_course_subject
+    course_subjects.each do |course_subject|
+      course_subject.update_attributes status: :closed
     end
   end
 

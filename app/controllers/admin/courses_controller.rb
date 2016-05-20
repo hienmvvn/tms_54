@@ -59,7 +59,7 @@ class Admin::CoursesController < ApplicationController
   def show
     @course_subjects = @course.course_subjects.paginate page: params[:page_subject],
       per_page: Settings.paginate.number_per_page
-    @users = @course.users.paginate page: params[:page_user],
+    @users = @course.users.order_by_supervisor.paginate page: params[:page_user],
       per_page: Settings.paginate.number_per_page
     respond_to do |format|
       format.html
