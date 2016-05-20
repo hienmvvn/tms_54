@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   scope :not_in_other_course, ->{where("id NOT IN(SELECT user_id FROM user_courses
     WHERE(status = #{Course.statuses[:in_process]}))
     OR id IN(SELECT id FROM users WHERE role = #{User.roles[:supervisor]})")}
+  scope :order_by_supervisor, ->{order role: :desc}
 
   def is_user? user
     self == user
