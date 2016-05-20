@@ -1,37 +1,7 @@
 <h3>
   <%= t "subject.all_subject" %>
 </h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>
-        <%= t "table.title" %>
-      </th>
-      <th>
-        <%= t "table.option" %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @subjects.each do |subject| %>
-      <tr>
-        <td>
-          <%= subject.title %>
-        </td>
-        <% if can? :manage, :all %>
-          <td>
-            <%= link_to t("table.delete"), [:admin, subject], method: :delete,
-              data: {confirm: t("confirm")} %>
-          </td>
-          <td>
-            <%= link_to t("table.update"), edit_admin_subject_path(subject) %>
-          </td>
-        <% end %>
-        <td>
-          <%= link_to t("form.submit"), "#" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @subjects, param_name: :page_subject %>
+<div id="list-course-subject">
+  <%= render "list_course_subjects", course_subjects: @course_subjects %>
+</div>
+<%= will_paginate @course_subjects, param_name: :page_subject %>

@@ -15,5 +15,6 @@ Rails.application.routes.draw do
 
     resources :subjects
     resources :courses
+    resources :course_subjects, only: [:update]
   end
 end

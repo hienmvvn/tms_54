@@ -17,7 +17,7 @@ class Course < ActiveRecord::Base
   def assign_subject_to_trainee
     users.trainee.each do |trainee|
       user_course = trainee.user_courses.find_by course_id: id
-      user_course.update_attribute :status, :in_process
+      user_course.update_attributes status: :in_process
       subjects.each do |subject|
         UserSubject.find_or_create_by user: trainee,
           subject: subject, user_course: user_course
@@ -34,7 +34,7 @@ class Course < ActiveRecord::Base
   def close_all_user_course
     users.trainee.each do |trainee|
       user_course = trainee.user_courses.find_by course_id: id
-      user_course.update_attribute :status, :closed
+      user_course.update_attributes status: :closed
     end
   end
 

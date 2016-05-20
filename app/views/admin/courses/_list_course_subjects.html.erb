@@ -1,0 +1,39 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= t "table.title" %>
+      </th>
+      <th>
+        <%= t "table.option" %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% course_subjects.each do |course_subject| %>
+      <tr>
+        <td>
+          <%= course_subject.subject.title %>
+        </td>
+        <% if can? :manage, :all %>
+          <td>
+            <%= link_to t("table.delete"), [:admin, course_subject.subject], method: :delete,
+              data: {confirm: t("confirm")} %>
+          </td>
+          <td>
+            <%= link_to t("table.update"), edit_admin_subject_path(course_subject.subject) %>
+          </td>
+        <% end %>
+        <% if course_subject.course.in_process? %>
+          <td id="course-subject-status-form-<%= course_subject.id %>">
+            <%= render "status_subject_form", course_subject: course_subject %>
+          </td>
+        <% else %>
+          <td class="text-center">
+            <%= t "subject.course_must_be_actived" %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

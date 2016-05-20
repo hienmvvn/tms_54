@@ -1,0 +1,4 @@
+$('#course-subject-status-form-<%= @course_subject.id %>')
+  .html('<%= j render "admin/courses/status_subject_form", course_subject: @course_subject %>');
+$('#flash-notice').html('<%= j render "layouts/flash" %>');
+<% flash.clear %>

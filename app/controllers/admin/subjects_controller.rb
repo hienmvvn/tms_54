@@ -43,7 +43,10 @@ class Admin::SubjectsController < ApplicationController
     else
       if @subject.update_attributes subject_params
         flash[:success] = t "flash.update_success"
-        redirect_to admin_subjects_path
+        respond_to do |format|
+          format.html{redirect_to admin_subjects_path}
+          format.js
+        end
       else
         render :edit
       end
