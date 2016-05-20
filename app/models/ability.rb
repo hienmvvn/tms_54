@@ -14,7 +14,7 @@ class Ability
     end
     if user.supervisor?
       can [:update, :edit, :show, :index], Course, id: user.course_ids
-      can :update, CourseSubject, course_id: user.course_ids
+      can [:update, :show], CourseSubject, course_id: user.course_ids
     end
   end
 end

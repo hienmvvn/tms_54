@@ -4,6 +4,9 @@
       <h3>
         <%= @course.title %>
       </h3>
+      <div class="well">
+        <%= @course.description %>
+      </div>
       <br>
       <div class="row" id="course-status-form-<%= @course.id %>">
         <%= render "status_form", course: @course %>
