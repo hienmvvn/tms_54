@@ -13,6 +13,11 @@ class Admin::CourseSubjectsController < ApplicationController
     end
   end
 
+  def show
+    @tasks = @course_subject.subject.tasks.paginate page: params[:page],
+      per_page: Settings.paginate.number_per_page
+  end
+
   private
   def course_subject_params
     params.require(:course_subject).permit :status

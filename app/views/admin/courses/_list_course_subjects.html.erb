@@ -13,7 +13,7 @@
     <% course_subjects.each do |course_subject| %>
       <tr>
         <td>
-          <%= course_subject.subject.title %>
+          <%= link_to course_subject.subject.title, [:admin, course_subject] %>
         </td>
         <% if can? :manage, :all %>
           <td>

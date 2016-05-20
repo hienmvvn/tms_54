@@ -64,6 +64,7 @@ en:
   table:
     title: "Title"
     option: "Option"
+    description: "Desciption"
     delete: "Delete"
     update: "Update"
     name: "Name"
