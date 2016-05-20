@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519112532) do
+ActiveRecord::Schema.define(version: 20160520054752) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id"
@@ -98,12 +98,14 @@ ActiveRecord::Schema.define(version: 20160519112532) do
     t.integer  "user_id"
     t.integer  "task_id"
     t.integer  "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_subject_id"
   end
 
   add_index "user_tasks", ["task_id"], name: "index_user_tasks_on_task_id"
   add_index "user_tasks", ["user_id"], name: "index_user_tasks_on_user_id"
+  add_index "user_tasks", ["user_subject_id"], name: "index_user_tasks_on_user_subject_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

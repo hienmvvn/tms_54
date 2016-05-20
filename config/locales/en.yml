@@ -77,3 +77,9 @@ en:
     error:
       no_course_found: "There is no course with id: %{id}"
     assign_user: "Assign User To Course"
+  user_subjects:
+    update:
+      success: "Finish Task success"
+      errors: "Finish Task fail"
+    show:
+      finish_task: "Finish Task"  

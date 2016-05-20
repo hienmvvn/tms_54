@@ -1,3 +1,28 @@
-<% @tasks.each do |task|%>
-  <p><%= task.title %></p>
-<% end %>
+<div class="center"><h1><%= @user_subject.subject.title %></h1></div>
+<div class="row">
+  <%= form_for @user_subject do |f| %>
+    <%= f.hidden_field :id %>
+    <%= f.fields_for :user_tasks do |builder| %>
+      <div class="row">
+        <% if builder.object.new_record? %>
+          <h4><%= builder.object.task.title %></h4>
+          <p>
+            <%= builder.check_box :task_id, {checked: false},
+              builder.object.task.id, nil %>
+          </p>
+        <% else %>
+          <h4><%= builder.object.task.title %></h4>
+          <p>
+            <%= builder.check_box :task_id, {checked: true, disabled: true} %>
+          </p>
+        <% end %> 
+      </div>
+    <% end %>
+
+    <div class="col-md-12">
+      <div class="text-center col-md-2">
+        <%= f.submit t("user_subjects.show.finish_task"), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
