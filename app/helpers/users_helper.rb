@@ -14,7 +14,7 @@ module UsersHelper
   end
 
   def user_subject_status user_subject
-    if user_subject.free?
+    if user_subject.free? || user_subject.closed?
       content_tag :div, user_subject.subject.title, class: "btn btn-default"
     elsif user_subject.in_process?
       link_to user_subject.subject.title,

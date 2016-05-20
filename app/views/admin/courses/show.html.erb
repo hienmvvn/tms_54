@@ -26,3 +26,8 @@
     </div>
   </div>
 </div>
+<% if @course.trainee_already_in_other_actived_course.present? %>
+  <div class="alert alert-danger">
+    <%= t "trainee_in_actived_course" %>
+  </div>
+<% end %>

@@ -10,9 +10,12 @@ class Course < ActiveRecord::Base
   validates :description, presence: true, length: {minimum: 9}
 
   after_update :assign_subject_to_trainee, if: :status_changed_to_in_process?
-  after_update :remove_trainee_from_free_course, if: :status_changed_to_in_process?
   after_update :close_all_user_course, if: :status_changed_to_closed?
   after_update :close_all_course_subject, if: :status_changed_to_closed?
+
+  def trainee_already_in_other_actived_course
+    User.in_other_actived_course self
+  end
 
   private
   def assign_subject_to_trainee
@@ -23,12 +26,6 @@ class Course < ActiveRecord::Base
         UserSubject.find_or_create_by user: trainee,
           subject: subject, user_course: user_course
       end
-    end
-  end
-
-  def remove_trainee_from_free_course
-    users.trainee.each do |trainee|
-      trainee.user_courses.free_course.destroy_all
     end
   end
 
