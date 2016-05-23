@@ -1,0 +1,34 @@
+<%= form_for [:admin, @user], html: {class: "form-horizontal"} do |f| %>
+  <%= render "shared/error_notice", object: @user %>
+  <% if can? :manage, :all %>
+    <div class="form-group">
+      <%= f.label :name, t("form.name"), class: "col-sm-1 control-label" %>
+      <div class="col-sm-11">
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, t("form.email"), class: "col-sm-1 control-label" %>
+      <div class="col-sm-11">
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, t("form.password"), class: "col-sm-1 control-label" %>
+      <div class="col-sm-11">
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.label :role, t("form.trainee") %>
+      <%= f.radio_button :role, :trainee %>
+      <%= f.label :role, t("form.supervisor") %>
+      <%= f.radio_button :role, :supervisor %>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-11">
+        <%= f.submit t("form.submit"), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
