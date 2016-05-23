@@ -1,4 +1,15 @@
-<div class="center"><h1><%= @user_subject.subject.title %></h1></div>
+<div class="center">
+  <h1><%= @user_subject.subject.title %></h1>
+</div>
+<% if @user_subject.closed? %>
+  <div class="label label-warning">
+    <%= t "subject.closed" %>
+  </div>
+<% else %>
+  <div class="label label-info">
+    <%= t "subject.in_process" %>
+  </div>
+<% end %>
 <div class="row">
   <%= form_for @user_subject do |f| %>
     <%= f.hidden_field :id %>
@@ -20,8 +31,14 @@
     <% end %>
 
     <div class="col-md-12">
-      <div class="text-center col-md-2">
-        <%= f.submit t("user_subjects.show.finish_task"), class: "btn btn-primary" %>
+      <div class="text-center col-md-12">
+        <% if @user_subject.closed? %>
+          <div class="alert alert-success">
+            <%= t "user_subjects.finished_subject" %>
+          </div>
+        <% else %>
+          <%= f.submit t("user_subjects.show.finish_task"), class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   <% end %>

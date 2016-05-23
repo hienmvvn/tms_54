@@ -1,6 +1,15 @@
 <h3>
   <%= @user_course.course.title %>
 </h3>
+<% if @user_course.closed? %>
+  <div class="label label-warning">
+    <%= t "course.closed" %>
+  </div>
+<% else %>
+  <div class="label label-info">
+    <%= t "course.in_process" %>
+  </div>
+<% end %>
 <h3><%= t "user.my_subject" %></h3>
 
 <% @user_subjects.each do |user_subject| %>
