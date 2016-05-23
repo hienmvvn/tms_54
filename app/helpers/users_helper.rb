@@ -4,7 +4,10 @@ module UsersHelper
       link_to user_course.course.title,
         [:admin, user_course.course], class: "btn btn-primary"
     else
-      if user_course.free?
+      if user_course.finished?
+        link_to user_course.course.title,
+          user_course_path(user_course), class: "btn btn-success"
+      elsif user_course.free?
         content_tag :div, user_course.course.title, class: "btn btn-default"
       elsif user_course.in_process?
         link_to user_course.course.title,
@@ -17,14 +20,14 @@ module UsersHelper
   end
 
   def user_subject_status user_subject
-    if user_subject.free?
+    if user_subject.finished?
+      link_to user_subject.subject.title,
+        user_subject_path(user_subject), class: "btn btn-success"
+    elsif user_subject.free?
       content_tag :div, user_subject.subject.title, class: "btn btn-default"
     elsif user_subject.in_process?
       link_to user_subject.subject.title,
         user_subject_path(user_subject), class: "btn btn-primary"
-    elsif user_subject.finished?
-      link_to user_subject.subject.title,
-        user_subject_path(user_subject), class: "btn btn-success"
     else
       link_to user_subject.subject.title,
         user_subject_path(user_subject), class: "btn btn-warning"

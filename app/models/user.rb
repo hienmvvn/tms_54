@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   scope :in_other_actived_course, ->course{where("id IN(SELECT user_id FROM user_courses
     WHERE(course_id NOT IN(#{course.id}) AND status = #{Course.statuses[:in_process]})
     AND user_id IN(SELECT user_id FROM user_courses WHERE course_id = #{course.id}))")}
+  scope :not_finished_with_current_course, ->course{where("id NOT IN(SELECT user_id FROM user_courses
+    WHERE course_id = #{course.id} AND status = #{Course.statuses[:closed]})")}
   
   validates :name, presence: true, length: {minimum: 6, maximum: 20}
   validates :role, presence: true
