@@ -28,6 +28,11 @@
         <td>
           <%= user.role %>
         </td>
+        <% if can? :manage, :all %>
+          <td>
+            <%= link_to t("table.update"), edit_admin_user_path(user) %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

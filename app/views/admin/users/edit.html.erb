@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>
+        <%= t "user.update" %>
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <% if @user.is_supervisor_in_actived_course? %>
+      <h4><%=  t("user.joinning_course", user_name: @user.name) %>
+        <% @actived_courses.each do |actived_course| %>
+          <%= link_to actived_course.course.title,  
+            admin_course_path(actived_course.course) %>
+        <% end %>
+      </h4>
+    <% end %>
+  </div>
+  <div class="row">
+    <%= render "form" %>
+  </div>
+
+</div>

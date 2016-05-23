@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :validatable, :timeoutable
 
-  enum role: [:user, :supervisor, :admin]
+  enum role: [:trainee, :supervisor, :admin]
 
   has_many :user_courses, dependent: :destroy
   has_many :user_subjects, dependent: :destroy
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   scope :in_other_actived_course, ->course{where("id IN(SELECT user_id FROM user_courses
     WHERE(course_id NOT IN(#{course.id}) AND status = #{Course.statuses[:in_process]})
     AND user_id IN(SELECT user_id FROM user_courses WHERE course_id = #{course.id}))")}
-
+  
   validates :name, presence: true, length: {minimum: 6, maximum: 20}
   validates :role, presence: true
 
@@ -47,5 +47,9 @@ class User < ActiveRecord::Base
 
   def following? other_user
     following.include? other_user
+  end
+
+  def is_supervisor_in_actived_course?
+    supervisor? && !user_courses.in_process.empty?
   end
 end
