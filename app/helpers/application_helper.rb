@@ -13,4 +13,32 @@ module ApplicationHelper
     end
     link_to name, "#", class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")}
   end
+
+  def subject_notice user_subject
+    if user_subject.finished?
+      content_tag :div, t("notice.finished"), class: "label label-success"
+    elsif user_subject.in_process?
+      content_tag :div, t("notice.inprocess"), class: "label label-info"
+    elsif user_subject.closed?
+      content_tag :div, t("notice.close"), class: "label label-warning"
+    else
+      content_tag :div, t("notice.free"), class: "label label-warning"
+    end
+  end
+
+  def count_task user_subject
+    if user_subject.finished?
+      content_tag :div,
+        t("notice.count_task",
+          task_done: user_subject.user_tasks.count,
+          total_task: user_subject.subject.tasks.count),
+        class: "label label-success"
+    else
+      content_tag :div,
+        t("notice.count_task",
+          task_done: user_subject.user_tasks.count,
+          total_task: user_subject.subject.tasks.count),
+        class: "label label-default"
+    end
+  end
 end

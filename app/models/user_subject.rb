@@ -6,11 +6,16 @@ class UserSubject < ActiveRecord::Base
   belongs_to :user_course
 
   has_many :user_tasks
+  has_many :tasks, through: :user_tasks
 
   accepts_nested_attributes_for :user_tasks, allow_destroy: true,
     reject_if: proc{|attribute|  attribute[:task_id].nil?}
 
   before_update :add_user_to_task
+
+  def finished?
+    subject.tasks.count == user_tasks.count
+  end
 
   private
   def add_user_to_task

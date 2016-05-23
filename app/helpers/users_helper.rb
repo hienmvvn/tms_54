@@ -22,6 +22,9 @@ module UsersHelper
     elsif user_subject.in_process?
       link_to user_subject.subject.title,
         user_subject_path(user_subject), class: "btn btn-primary"
+    elsif user_subject.finished?
+      link_to user_subject.subject.title,
+        user_subject_path(user_subject), class: "btn btn-success"
     else
       link_to user_subject.subject.title,
         user_subject_path(user_subject), class: "btn btn-warning"
