@@ -1,0 +1,35 @@
+<% if can? :manage, :all %>
+  <%= link_to t("user.create"), new_admin_user_path, class: "btn btn-primary" %>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= t "user.name" %>
+      </th>
+      <th>
+        <%= t "user.email" %>
+      </th>
+      <th>
+        <%= t "user.role" %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user|%>
+      <tr>
+        <td>
+          <%= user.name %>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+        <td>
+          <%= user.role %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  
+</table>

@@ -30,6 +30,7 @@ en:
     my_subject: "My Subject"
     all_user: "All User"
     all_user_in_course: "All Trainee In Course"
+    create: "Create New User"
   form:
     title: "Title"
     description: "Description"
@@ -40,6 +41,11 @@ en:
     finish_course: "Finish Course"
     start_subject: "Start Subject"
     finish_subject: "Finish Subject"
+    name: "Name"
+    email: "Email"
+    password: "Password"
+    trainee: "Trainee"
+    supervisor: "Supervisor"
   flash:
     create_success: "Create Successfully"
     create_failed: "Create failed"

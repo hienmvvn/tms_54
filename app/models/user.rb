@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
     WHERE(course_id NOT IN(#{course.id}) AND status = #{Course.statuses[:in_process]})
     AND user_id IN(SELECT user_id FROM user_courses WHERE course_id = #{course.id}))")}
 
+  validates :name, presence: true, length: {minimum: 6, maximum: 20}
+  validates :role, presence: true
+
   def is_user? user
     self == user
   end
