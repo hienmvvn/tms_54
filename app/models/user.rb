@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :validatable, :timeoutable
 
-  enum role: [:trainee, :supervisor, :admin]
+  enum role: [:user, :supervisor, :admin]
 
   has_many :user_courses, dependent: :destroy
   has_many :user_subjects, dependent: :destroy
@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :passive_relationships, class_name: Relationship.name,
     foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
-  has_many :follower, through: :passive_relationships, source: :follower
+  has_many :followers, through: :passive_relationships, source: :follower
 
   scope :not_admin, ->{where.not role: User.roles[:admin]}
   scope :not_in_other_actived_course, ->course{where("id NOT IN(SELECT user_id FROM user_courses
@@ -32,5 +32,17 @@ class User < ActiveRecord::Base
 
   def is_user? user
     self == user
+  end
+
+  def follow other_user
+    active_relationships.create followed_id: other_user.id
+  end
+
+  def unfollow other_user
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following? other_user
+    following.include? other_user
   end
 end

@@ -31,6 +31,16 @@ en:
     all_user: "All User"
     all_user_in_course: "All Trainee In Course"
     create: "Create New User"
+    show:
+      avatar: "avatar"
+      profile: "'s profile"
+      name: "name"
+      email: "email"
+      address: "address"
+      phone: "phone"
+      follow: "Follow"
+      unfollow: "Unfollow"
+      error_message: "Sever was error, try again"
   form:
     title: "Title"
     description: "Description"

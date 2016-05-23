@@ -1,0 +1,5 @@
+<% if @status %>
+  $('#follow_form').html('<%= j render "users/follow" %>')
+<% else %>
+  alert(<%= t "user.show.error_message" %>);
+<% end %>
