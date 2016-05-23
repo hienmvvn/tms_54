@@ -48,15 +48,7 @@
         <div class="col-sm-12">
           <h3>
             <%= link_to user_course.course.title, user_course %>
-            <% if user_course.in_process? %>
-              <div class="label label-info">
-                <%= user_course.status %>
-              </div>
-            <% else %>
-              <div class="label label-warning">
-                <%= user_course.status %>
-              </div>
-            <% end %>
+            <%= course_notice user_course %>
           </h3>
         </div>
         <h3 class="label label-primary">

@@ -14,14 +14,14 @@ class Course < ActiveRecord::Base
   after_update :close_all_course_subject, if: :status_changed_to_closed?
 
   def trainee_already_in_other_actived_course
-    User.in_other_actived_course self
+    User.in_other_actived_course(self).not_finished_with_current_course self
   end
 
   private
   def assign_subject_to_trainee
     users.trainee.each do |trainee|
       user_course = trainee.user_courses.find_by course_id: id
-      user_course.update_attributes status: :in_process
+      user_course.update_attributes status: :in_process unless user_course.finished?
       subjects.each do |subject|
         UserSubject.find_or_create_by user: trainee,
           subject: subject, user_course: user_course

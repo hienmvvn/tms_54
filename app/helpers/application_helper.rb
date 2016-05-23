@@ -26,6 +26,18 @@ module ApplicationHelper
     end
   end
 
+  def course_notice user_course
+    if user_course.finished?
+      content_tag :div, t("notice.finished"), class: "label label-success"
+    elsif user_course.in_process?
+      content_tag :div, t("notice.inprocess"), class: "label label-info"
+    elsif user_course.closed?
+      content_tag :div, t("notice.close"), class: "label label-warning"
+    else
+      content_tag :div, t("notice.free"), class: "label label-warning"
+    end
+  end
+
   def count_task user_subject
     if user_subject.finished?
       content_tag :div,

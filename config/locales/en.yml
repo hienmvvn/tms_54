@@ -107,6 +107,7 @@ en:
     can_update_trainee_later: "You can update trainee later"
     title:
       processing: "Course Processing"
+    finished: "Finished"
   user_subjects:
     update:
       success: "Finish Task success"
