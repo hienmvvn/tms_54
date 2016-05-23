@@ -13,6 +13,20 @@ class Admin::UsersController < ApplicationController
     end
   end
   
+  def edit
+    @actived_courses = @user.user_courses.in_process if @user.supervisor?
+  end
+ 
+  def update
+    if @user.update_attributes user_params
+      flash[:success] = t "flash.update_success"
+      redirect_to admin_users_path
+    else
+      flash[:danger] = t "flash.update_failed"
+      render :edit
+    end
+  end
+  
   private
   def user_params
     params.require(:user).permit :name, :email, :password, :role

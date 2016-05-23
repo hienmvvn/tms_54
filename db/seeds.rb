@@ -19,7 +19,7 @@ end
   Fabricate :course_subject, course_id: 1,
     subject_id: Faker::Number.between(1, 4)
   Fabricate :user_course, status: Faker::Number.between(0, 1),
-    user_id: 1, course_id: Faker::Number.between(1, 4)
+    user_id: Faker::Number.between(1, 2), course_id: Faker::Number.between(1, 4)
   Fabricate :user_subject, status: Faker::Number.between(0, 1),
-    user_id: 1, user_course_id: 1, subject_id: Faker::Number.between(1, 4)
+    user_id: Faker::Number.between(1, 2), user_course_id: 1, subject_id: Faker::Number.between(1, 4)
 end

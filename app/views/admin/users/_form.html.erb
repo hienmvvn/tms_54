@@ -20,11 +20,14 @@
       </div>
     </div>
     <div class="field">
-      <%= f.label :role, t("form.trainee") %>
-      <%= f.radio_button :role, :trainee %>
+      <% unless @user.is_supervisor_in_actived_course? %>
+        <%= f.label :role, t("form.trainee") %>
+        <%= f.radio_button :role, :trainee %>
+      <% end %>
       <%= f.label :role, t("form.supervisor") %>
       <%= f.radio_button :role, :supervisor %>
     </div>
+    <br>
     <div class="form-group">
       <div class="col-sm-offset-1 col-sm-11">
         <%= f.submit t("form.submit"), class: "btn btn-primary" %>
