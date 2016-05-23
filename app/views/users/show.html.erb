@@ -7,7 +7,7 @@
     <div class="col-md-8 col-md-offset-2 center">
       <img src="http://cdn.grumpycats.com/wp-content/uploads/2016/02/12654647_974282002607537_7798179861389974677_n-758x758.jpg" 
         alt=<%= @user.name %> <%= t "user.show.avatar" %> 
-        class="img-responsive img-circle">
+        class="img-responsive">
     </div>
   </div>
   <div class="col-md-8">
@@ -31,5 +31,77 @@
         </tr>
       </table>
     </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="text-center">
+    <h3>
+      <%= t "course.title.processing" %>
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <% @user_courses.each do |user_course| %>
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>
+            <%= link_to user_course.course.title, user_course %>
+            <% if user_course.in_process? %>
+              <div class="label label-info">
+                <%= user_course.status %>
+              </div>
+            <% else %>
+              <div class="label label-warning">
+                <%= user_course.status %>
+              </div>
+            <% end %>
+          </h3>
+        </div>
+        <h3 class="label label-primary">
+          <%= t "subject.all_subject" %>
+        </h3><br><br>
+        <% user_course.user_subjects.each do |user_subject| %>
+          <div class="col-sm-12">
+            <div class="label label-info white-text">
+              <%= link_to user_subject.subject.title, user_subject %>
+            </div>
+            <%= subject_notice user_subject %>
+            <%= count_task user_subject %>
+            <div class="well">
+              <h4 class="label label-primary">
+                <%= t "subject.tasks" %>
+              </h4>
+              <br><br>
+              <% user_subject.subject.tasks.each do |task| %>
+                <div class="row">
+                  <% if user_subject.tasks.include? task %>
+                    <div class="col-sm-10">
+                      <div class="label label-success">
+                        <%= task.title %>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="label label-success">
+                        <%= t "notice.finished" %>
+                      </div>
+                    </div>
+                  <% else %>
+                    <div class="col-sm-10">
+                      <div class="label label-default">
+                        <%= task.title %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <br>
+                <br>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

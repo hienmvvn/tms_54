@@ -41,6 +41,13 @@ en:
       follow: "Follow"
       unfollow: "Unfollow"
       error_message: "Sever was error, try again"
+      avatar: "avatar"
+      profile: "'s profile"
+      name: "name"
+      email: "email"
+      address: "address"
+      phone: "phone"
+      error_message: "Sever was error, try again"
   form:
     title: "Title"
     description: "Description"
@@ -94,9 +101,11 @@ en:
     update: "Update Course"
     error:
       no_course_found: "There is no course with id: %{id}"
+      trainee_in_actived_course: "Trainee in other actived course"
     assign_user: "Update trainee in Course"
-    in_process: "This Course is in Process"
-    closed: "This Course is Closed"
+    can_update_trainee_later: "You can update trainee later"
+    title:
+      processing: "Course Processing"
   user_subjects:
     update:
       success: "Finish Task success"
@@ -106,3 +115,9 @@ en:
       trainee_in_actived_course: "Cant Start Course"
     finished_subject: "This Subject is Closed of Finished"
   trainee_in_actived_course: "Some Trainee has already in other actived course"
+  notice:
+    inprocess: "In process"
+    finished: "Finished"
+    close: "Closed"
+    free: "New"
+    count_task: "%{task_done} / %{total_task}"

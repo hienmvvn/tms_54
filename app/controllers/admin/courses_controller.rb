@@ -13,7 +13,7 @@ class Admin::CoursesController < ApplicationController
   end
 
   def new
-    @users = User.not_admin
+    @users = User.not_admin.not_in_actived_course
   end
 
   def create

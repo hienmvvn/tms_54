@@ -26,6 +26,6 @@ class Subject < ActiveRecord::Base
     errors.add :title,
       I18n.t("subject.error.cannot_be_blank") unless subject_params[:title].present?
     errors.add :description,
-      I18n.t("subject.error.cannot_be_blank") unless subject_params[:description].present?
+        I18n.t("subject.error.cannot_be_blank") unless subject_params[:description].present?
   end
 end

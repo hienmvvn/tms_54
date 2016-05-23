@@ -34,18 +34,24 @@
           <% if user.is_user? current_user %>
             <%= hidden_field_tag "course[user_ids][]", user.id %>
           <% end %>
-          <% if @course.trainee_already_in_other_actived_course.include? user %>
-            <%= check_box_tag "course[user_ids][]",
-              user.id, checked = @course.users.include?(user),
-              disabled: user.is_user?(current_user) %>
+          <% if @course.new_record? %>
+            <%= check_box_tag "course[user_ids][]", user.id %>
             <%= label_tag "course[user_ids][][#{user.id}]", user.name + " =|= " + user.role,
-              class: "label label-danger" %>
+              class: "label label-info" %>
           <% else %>
-            <%= check_box_tag "course[user_ids][]",
-              user.id, checked = @course.users.include?(user),
-              disabled: user.is_user?(current_user) %>
-            <%= label_tag "course[user_ids][][#{user.id}]", user.name + " =|= " + user.role,
-              class: "label label-primary" %>
+            <% if @course.trainee_already_in_other_actived_course.include? user %>
+              <%= check_box_tag "course[user_ids][]",
+                user.id, checked = @course.users.include?(user),
+                disabled: user.is_user?(current_user) %>
+              <%= label_tag "course[user_ids][][#{user.id}]", user.name + " =|= " + user.role,
+                class: "label label-danger" %>
+            <% else %>
+              <%= check_box_tag "course[user_ids][]",
+                user.id, checked = @course.users.include?(user),
+                disabled: user.is_user?(current_user) %>
+              <%= label_tag "course[user_ids][][#{user.id}]", user.name + " =|= " + user.role,
+                class: "label label-primary" %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

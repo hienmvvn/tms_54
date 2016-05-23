@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :user_courses, dependent: :destroy
   has_many :user_subjects, dependent: :destroy
-  has_many :user_tasks
+  has_many :user_tasks, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :courses, through: :user_courses
   has_many :subjects, through: :user_subjects
@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :follower
 
   scope :not_admin, ->{where.not role: User.roles[:admin]}
+  scope :not_in_actived_course, ->{where("id NOT IN(SELECT user_id FROM user_courses
+    WHERE status = #{Course.statuses[:in_process]}) OR id IN(SELECT id FROM users
+    WHERE(role = #{User.roles[:supervisor]}))")}
   scope :not_in_other_actived_course, ->course{where("id NOT IN(SELECT user_id FROM user_courses
     WHERE(status = #{Course.statuses[:in_process]}))
     OR id IN(SELECT id FROM users WHERE role = #{User.roles[:supervisor]})
