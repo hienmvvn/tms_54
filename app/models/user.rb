@@ -18,10 +18,14 @@ class User < ActiveRecord::Base
   has_many :follower, through: :passive_relationships, source: :follower
 
   scope :not_admin, ->{where.not role: User.roles[:admin]}
-  scope :not_in_other_course, ->{where("id NOT IN(SELECT user_id FROM user_courses
+  scope :not_in_other_actived_course, ->course{where("id NOT IN(SELECT user_id FROM user_courses
     WHERE(status = #{Course.statuses[:in_process]}))
-    OR id IN(SELECT id FROM users WHERE role = #{User.roles[:supervisor]})")}
+    OR id IN(SELECT id FROM users WHERE role = #{User.roles[:supervisor]})
+    OR id IN(SELECT user_id FROM user_courses WHERE course_id = #{course.id})")}
   scope :order_by_supervisor, ->{order role: :desc}
+  scope :in_other_actived_course, ->course{where("id IN(SELECT user_id FROM user_courses
+    WHERE(course_id NOT IN(#{course.id}) AND status = #{Course.statuses[:in_process]})
+    AND user_id IN(SELECT user_id FROM user_courses WHERE course_id = #{course.id}))")}
 
   def is_user? user
     self == user

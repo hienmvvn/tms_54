@@ -20,13 +20,13 @@ class Admin::CoursesController < ApplicationController
     @course = Course.new course_params
     if @course.save
       flash[:success] = t "flash.create_success"
-      respond_to do |format|
-        format.html
-        format.js
-      end
     else
       @users = User.not_admin
-      render :new
+      flash[:danger] = t "flash.create_failed"
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -36,13 +36,14 @@ class Admin::CoursesController < ApplicationController
   def update
     if @course.update_attributes course_params
       flash[:success] = t "flash.update_success"
-      respond_to do |format|
-        format.html
-        format.js
-      end
     else
       flash[:danger] = t "flash.update_failed"
-      render :edit
+    end
+    @courses = Course.paginate page: params[:page],
+      per_page: Settings.paginate.number_per_page
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -78,6 +79,6 @@ class Admin::CoursesController < ApplicationController
   end
 
   def load_user
-    @users = User.not_admin.not_in_other_course
+    @users = User.not_admin.not_in_other_actived_course @course
   end
 end
