@@ -61,6 +61,8 @@ en:
       cannot_be_blank: "Can not be blank"
     course_must_be_actived: "Active The Course Before Start Subject"
     update: "Update Subject"
+    closed: "This subject is closed"
+    in_process: "This subject is in process"
   table:
     title: "Title"
     option: "Option"
@@ -77,6 +79,8 @@ en:
     error:
       no_course_found: "There is no course with id: %{id}"
     assign_user: "Update trainee in Course"
+    in_process: "This Course is in Process"
+    closed: "This Course is Closed"
   user_subjects:
     update:
       success: "Finish Task success"
@@ -84,5 +88,5 @@ en:
     show:
       finish_task: "Finish Task"
       trainee_in_actived_course: "Cant Start Course"
-    assign_user: "Update Trainee in Course"
+    finished_subject: "This Subject is Closed of Finished"
   trainee_in_actived_course: "Some Trainee has already in other actived course"
