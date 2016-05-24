@@ -39,7 +39,9 @@ class Admin::CoursesController < ApplicationController
   end
 
   def update
+    before_user_ids = @course.user_ids
     if @course.update_attributes course_params
+      @course.compare_user_and_send_mail before_user_ids
       flash[:success] = t "flash.update_success"
     else
       flash[:danger] = t "flash.update_failed"
@@ -61,11 +63,10 @@ class Admin::CoursesController < ApplicationController
   def destroy
     if @course.destroy
       flash[:success] = t "flash.delete_success"
-      redirect_to admin_courses_path
     else
       flash[:danger] = t "flash.delete_failed"
-      redirect_to admin_courses_path
     end
+    redirect_to admin_courses_path
   end
 
   def show

@@ -1,0 +1,26 @@
+<h4><%= t "mailer.dear_name", name: @user.name %></h4>
+<hr />
+<h3><%= t "mailer.sorry" %></h3>
+<p>
+  <%= t "mailer.remove_trainee_email_body", title: @course_title %>
+</p>
+<ul style="list-style: none; text-align: center;
+  padding-left: 0px; margin: 30px 0;">
+  <li style="display: inline; margin: 0 5px;">
+    <%= link_to t("mailer.home_page"), root_url, 
+      style: "padding: 10px 15px; border-radius: 5px; font-size: 15px; 
+      background-color: #286090; color: #FFFFFF;
+      text-decoration: none;" %>
+  </li>
+</ul>
+<p><%= t "mailer.tms_54_team" %></p>
+<hr />
+<div style="width: 100%; margin-top: 10px; background-color: #252839">
+  <p style="text-align: center; color: #FFFFFF; font-size: 13px;
+    margin: 0; padding: 9px 0">
+    <%= t "mailer.copyright" %> 
+    <%= link_to t("mailer.author_desiger_name"), 
+      t("mailer.author_desiger_website"),
+      style: "color: #f2b632;" %>
+  </p>
+</div>

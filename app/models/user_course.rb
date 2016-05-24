@@ -10,6 +10,10 @@ class UserCourse < ActiveRecord::Base
 
   before_destroy :delete_activity
 
+  after_create :send_assign_email
+
+  after_destroy :send_remove_email
+
   def all_activities
     activities = Activity.activity_courses(self)
     user_subjects.each do |user_subject|    
@@ -24,5 +28,13 @@ class UserCourse < ActiveRecord::Base
   private
   def delete_activity
     Activity.activity_courses(self).destroy_all
+  end
+
+  def send_assign_email
+    Mailer.assign_trainee_email(user, course).deliver_now
+  end
+
+  def send_remove_email
+    Mailer.remove_trainee_email(user, course).deliver_now
   end
 end

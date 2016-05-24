@@ -17,6 +17,16 @@ class Course < ActiveRecord::Base
     User.in_other_actived_course(self).not_finished_with_current_course self
   end
 
+  def compare_user_and_send_mail before_user_ids
+    after_user_ids = self.user_ids
+    before_user_ids.each do |before_user_id|
+      unless after_user_ids.include? before_user_id
+        before_user = User.find before_user_id
+        Mailer.remove_trainee_email(before_user, self).deliver_now
+      end
+    end
+  end
+
   private
   def assign_subject_to_trainee
     users.trainee.each do |trainee|
