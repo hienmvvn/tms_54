@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: {minimum: 6, maximum: 20}
   validates :role, presence: true
 
+  mount_uploader :avatar, AvatarUploader
+
   def is_user? user
     self == user
   end

@@ -4,8 +4,7 @@
       <div class="row">
         <%= link_to user do %>
           <div class="col-md-2">
-            <%= image_tag "avatar.jpg", class: "img-responsive img-circle", 
-              alt: user.name %>
+            <%= avatar_for user %>
           </div>
           <div class="col-md-10">
             <h3><%= user.name %></h3>
