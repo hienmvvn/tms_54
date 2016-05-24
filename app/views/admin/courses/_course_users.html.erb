@@ -2,7 +2,10 @@
   <%= t "user.all_user_in_course" %>
 </h3>
 <h3>
-  <%= link_to t("course.assign_user"), edit_admin_course_path(@course), class: "btn btn-primary" %>
+  <% unless @course.in_process? %>
+    <%= link_to t("course.assign_user"), edit_admin_course_path(@course),
+      class: "btn btn-primary" %>
+  <% end %>
 </h3>
 <table class="table table-striped">
   <thead>
@@ -10,13 +13,19 @@
       <th>
         <%= t "table.name" %>
       </th>
+      <th>
+        <%= t "table.role" %>
+      </th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
         <td>
-          <%= user.name %> || <%= user.role %>
+          <%= user.name %>
+        </td>
+        <td>
+          <%= user.role %>
         </td>
       </tr>
     <% end %>
