@@ -8,7 +8,7 @@ class Ability
     else
       can :read, course: {id: user.course_ids}      
       can :read, subject: {id: user.subject_ids}
-      can :read, User, id: user.id
+      can [:read, :index], User, id: User.trainee.ids
       can :read, UserCourse, user_id: user.id
       can [:read, :update], UserSubject, user_id: user.id
     end
