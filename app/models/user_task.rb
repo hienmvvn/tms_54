@@ -3,10 +3,12 @@ class UserTask < ActiveRecord::Base
   belongs_to :task
   belongs_to :user_subject
 
+  before_destroy :delete_activity
+
   after_create :finish_subject, if: :all_tasks_was_finished?
   after_create :finish_course, if: :all_subjects_was_finished?
   after_create :create_activity
-
+ 
   private
   def all_tasks_was_finished?
     user_subject.user_tasks.count == user_subject.subject.tasks.count
@@ -39,5 +41,9 @@ class UserTask < ActiveRecord::Base
         action_type: Activity.action_types[:finish_course],
         target_id: user_subject.user_course.id
     end
+  end
+
+  def delete_activity
+    Activity.activity_tasks(self).destroy_all
   end
 end

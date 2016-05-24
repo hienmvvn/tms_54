@@ -7,5 +7,6 @@ class UsersController < ApplicationController
 
   def show
     @user_courses = @user.user_courses
+    @activities = @user.activities.latest
   end
 end

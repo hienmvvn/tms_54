@@ -33,4 +33,46 @@ module UsersHelper
         user_subject_path(user_subject), class: "btn btn-warning"
     end
   end
+
+  def activity_action activity
+    if activity.update_profile?
+      content_tag :div, t("activity.update_profile",
+        time: time_ago_in_words(activity.created_at))
+    elsif activity.follow?
+      following_user = User.find_by id: activity.target_id
+      content_tag :div, t("activity.follow_html", 
+        user: link_to(following_user.name,
+          user_path(following_user),
+          class: "label label-info"),
+        time: time_ago_in_words(activity.created_at))
+    elsif activity.unfollow?
+      unfollow_user = User.find_by id: activity.target_id
+      content_tag :div, t("activity.unfollow_html",
+        user: link_to(unfollow_user.name, 
+          user_path(unfollow_user),
+          class: "label label-info"),
+        time: time_ago_in_words(activity.created_at))
+    elsif activity.finish_task?
+      user_task = UserTask.find_by id: activity.target_id
+      content_tag :div, t("activity.finish_task_html",
+        task: link_to(user_task.task.title,
+          user_subject_path(user_task.user_subject), 
+          class: "label label-info"),
+        time: time_ago_in_words(activity.created_at))
+    elsif activity.finish_subject?
+      user_subject = UserSubject.find_by id: activity.target_id
+      content_tag :div, t("activity.finish_subject_html", 
+        subject: link_to(user_subject.subject.title,
+          user_subject_path(user_subject),
+          class: "label label-info"),
+        time: time_ago_in_words(activity.created_at))
+    else activity.finish_course?
+      user_course = UserCourse.find_by id: activity.target_id
+      content_tag :div, t("activity.finish_course_html",
+        course: link_to(user_course.course.title, 
+          user_course_path(user_course),
+          class: "label label-info"),
+        time: time_ago_in_words(activity.created_at))
+    end        
+  end
 end

@@ -32,6 +32,8 @@ en:
     all_user_in_course: "All Trainee In Course"
     create: "Create New User"
     cant_add_users: "Can't add users to Course, Course is in process."
+    activities: "Activities"
+    all_users: "All Trainees"
     show:
       avatar: "avatar"
       profile: "'s profile"
@@ -126,3 +128,10 @@ en:
     close: "Closed"
     free: "New"
     count_task: "%{task_done} / %{total_task}"
+  activity:
+    update_profile: "updated profile. %{time} ago"
+    finish_task_html: "finised task %{task} %{time} ago"
+    finish_subject_html: "finished subject %{subject} %{time} ago"
+    finish_course_html: "finished course %{course} %{time} ago"
+    follow_html: "followed %{user} %{time} ago"
+    unfollow_html: "unfollowed %{user} %{time} ago"
