@@ -10,11 +10,15 @@ class CourseSubject < ActiveRecord::Base
   def change_user_subject_status
     if status_changed? && in_process?
       subject.user_subjects.each do |user_subject|
-        user_subject.update_attributes status: :in_process
+        unless user_subject.finished?
+          user_subject.update_attributes status: :in_process
+        end
       end
     else
       subject.user_subjects.each do |user_subject|
-        user_subject.update_attributes status: :closed
+        unless user_subject.finished?
+          user_subject.update_attributes status: :closed
+        end
       end
     end
   end

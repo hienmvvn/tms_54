@@ -5,6 +5,7 @@ class UserTask < ActiveRecord::Base
 
   after_create :finish_subject, if: :all_tasks_was_finished?
   after_create :finish_course, if: :all_subjects_was_finished?
+  after_create :create_activity
 
   private
   def all_tasks_was_finished?
@@ -12,7 +13,7 @@ class UserTask < ActiveRecord::Base
   end
 
   def finish_subject
-    user_subject.update_attributes status: :closed
+    user_subject.update_attributes status: :finished
   end
 
   def all_subjects_was_finished?
@@ -22,6 +23,21 @@ class UserTask < ActiveRecord::Base
   end
 
   def finish_course
-    user_subject.user_course.update_attributes status: :closed
+    user_subject.user_course.update_attributes status: :finished
+  end
+
+  def create_activity
+    Activity.create user_id: user_id,
+      action_type: Activity.action_types[:finish_task], target_id: id
+    if all_tasks_was_finished?
+      Activity.create user_id: user_id,
+        action_type: Activity.action_types[:finish_subject],
+        target_id: user_subject.id
+    end
+    if all_subjects_was_finished?
+      Activity.create user_id: user_id,
+        action_type: Activity.action_types[:finish_course],
+        target_id: user_subject.user_course.id
+    end
   end
 end

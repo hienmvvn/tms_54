@@ -32,7 +32,7 @@ class Course < ActiveRecord::Base
   def close_all_user_course
     users.trainee.each do |trainee|
       user_course = trainee.user_courses.find_by course_id: id
-      user_course.update_attributes status: :closed
+      user_course.update_attributes status: :closed unless user_course.finished?
     end
   end
 
