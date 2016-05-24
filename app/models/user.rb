@@ -18,19 +18,28 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :follower
 
   scope :not_admin, ->{where.not role: User.roles[:admin]}
-  scope :not_in_actived_course, ->{where("id NOT IN(SELECT user_id FROM user_courses
-    WHERE status = #{Course.statuses[:in_process]}) OR id IN(SELECT id FROM users
+  scope :not_in_actived_course, ->{where("id NOT IN
+    (SELECT user_id FROM user_courses
+    WHERE status = #{Course.statuses[:in_process]})
+    OR id IN(SELECT id FROM users
     WHERE(role = #{User.roles[:supervisor]}))")}
-  scope :not_in_other_actived_course, ->course{where("id NOT IN(SELECT user_id FROM user_courses
+  scope :not_in_other_actived_course, ->course{where("id NOT IN
+    (SELECT user_id FROM user_courses
     WHERE(status = #{Course.statuses[:in_process]}))
     OR id IN(SELECT id FROM users WHERE role = #{User.roles[:supervisor]})
-    OR id IN(SELECT user_id FROM user_courses WHERE course_id = #{course.id})")}
+    OR id IN(SELECT user_id FROM user_courses
+    WHERE course_id = #{course.id})")}
   scope :order_by_supervisor, ->{order role: :desc}
-  scope :in_other_actived_course, ->course{where("id IN(SELECT user_id FROM user_courses
-    WHERE(course_id NOT IN(#{course.id}) AND status = #{Course.statuses[:in_process]})
-    AND user_id IN(SELECT user_id FROM user_courses WHERE course_id = #{course.id}))")}
-  scope :not_finished_with_current_course, ->course{where("id NOT IN(SELECT user_id FROM user_courses
-    WHERE course_id = #{course.id} AND status = #{Course.statuses[:closed]})")}
+  scope :in_other_actived_course, ->course{where("id IN
+    (SELECT user_id FROM user_courses
+    WHERE(course_id NOT IN(#{course.id})
+    AND status = #{Course.statuses[:in_process]})
+    AND user_id IN(SELECT user_id FROM user_courses
+    WHERE course_id = #{course.id}))")}
+  scope :not_finished_with_current_course, ->course{where("id NOT IN
+    (SELECT user_id FROM user_courses
+    WHERE course_id = #{course.id}
+    AND status = #{UserCourse.statuses[:finished]})")}
   
   validates :name, presence: true, length: {minimum: 6, maximum: 20}
   validates :role, presence: true
@@ -41,10 +50,14 @@ class User < ActiveRecord::Base
 
   def follow other_user
     active_relationships.create followed_id: other_user.id
+    Activity.create user_id: id,
+      action_type: Activity.action_types[:follow], target_id: other_user.id
   end
 
   def unfollow other_user
     active_relationships.find_by(followed_id: other_user.id).destroy
+    Activity.create user_id: id,
+      action_type: Activity.action_types[:unfollow], target_id: other_user.id
   end
 
   def following? other_user

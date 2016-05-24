@@ -2,6 +2,9 @@
   <h1><%= @user_subject.subject.title %></h1>
 </div>
 <%= subject_notice @user_subject %>
+<div class="well">
+  <%= @user_subject.subject.description %>
+</div>
 <div class="row">
   <%= form_for @user_subject do |f| %>
     <%= f.hidden_field :id %>

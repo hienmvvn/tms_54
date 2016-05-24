@@ -4,7 +4,10 @@
   <%= form_for [:admin, course], remote: true do |f| %>
     <% if course.in_process? %>
       <%= f.hidden_field :status, value: :closed %>
-      <%= f.submit t("form.finish_course"), class: "btn btn-default" %>
+      <%= f.submit t("form.finish_course"), class: "btn btn-warning" %>
+    <% elsif course.free? %>
+      <%= f.hidden_field :status, value: :in_process %>
+      <%= f.submit t("form.start_course"), class: "btn btn-info" %>
     <% else %>
       <%= f.hidden_field :status, value: :in_process %>
       <%= f.submit t("form.start_course"), class: "btn btn-primary" %>

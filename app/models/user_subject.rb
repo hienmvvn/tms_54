@@ -1,5 +1,5 @@
 class UserSubject < ActiveRecord::Base
-  enum status: [:free, :in_process, :closed]
+  enum status: [:free, :in_process, :closed, :finished]
 
   belongs_to :subject
   belongs_to :user
@@ -12,10 +12,6 @@ class UserSubject < ActiveRecord::Base
     reject_if: proc{|attribute|  attribute[:task_id].nil?}
 
   before_update :add_user_to_task
-
-  def finished?
-    subject.tasks.count == user_tasks.count
-  end
 
   private
   def add_user_to_task
