@@ -4,8 +4,13 @@ class Admin::CoursesController < ApplicationController
   before_action :load_user, only: [:edit, :update]
 
   def index
-    @courses = Course.paginate page: params[:page],
-      per_page: Settings.paginate.number_per_page
+    if @current_user.admin?
+      @courses = Course.paginate page: params[:page],
+        per_page: Settings.paginate.number_per_page
+    else
+      @courses = @current_user.courses.paginate page: params[:page],
+        per_page: Settings.paginate.number_per_page
+    end
     respond_to do |format|
       format.html
       format.js
@@ -39,8 +44,14 @@ class Admin::CoursesController < ApplicationController
     else
       flash[:danger] = t "flash.update_failed"
     end
-    @courses = Course.paginate page: params[:page],
-      per_page: Settings.paginate.number_per_page
+    
+    if @current_user.admin?
+      @courses = Course.paginate page: params[:page],
+        per_page: Settings.paginate.number_per_page
+    else
+      @courses = @current_user.courses.paginate page: params[:page],
+        per_page: Settings.paginate.number_per_page
+    end
     respond_to do |format|
       format.html
       format.js

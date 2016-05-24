@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= subject.title %>
+    <%= link_to subject.title, admin_subject_path(subject) %>
   </td>
   <td>
     <%= link_to t("table.delete"), [:admin, subject], method: :delete,

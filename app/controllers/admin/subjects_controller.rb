@@ -13,6 +13,14 @@ class Admin::SubjectsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def show
+    @tasks = @subject.tasks.paginate page: params[:page],
+      per_page: Settings.paginate.number_per_page
+  end
+  
   def create
     @subject = Subject.new subject_params
     if @subject.save
@@ -31,9 +39,6 @@ class Admin::SubjectsController < ApplicationController
       flash[:danger] = t "flash.delete_failed"
       redirect_to admin_subjects_path
     end
-  end
-
-  def edit
   end
 
   def update

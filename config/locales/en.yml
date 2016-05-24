@@ -31,6 +31,7 @@ en:
     all_user: "All User"
     all_user_in_course: "All Trainee In Course"
     create: "Create New User"
+    cant_add_users: "Can't add users to Course, Course is started."
     show:
       avatar: "avatar"
       profile: "'s profile"
