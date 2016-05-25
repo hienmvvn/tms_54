@@ -11,6 +11,7 @@ class Ability
       can [:read, :index], User, id: User.trainee.ids
       can :read, UserCourse, user_id: user.id
       can [:read, :update], UserSubject, user_id: user.id
+      can :manage, Activity, user_id: user.id
     end
     if user.supervisor?
       can [:update, :edit, :show, :index], Course, id: user.course_ids

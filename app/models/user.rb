@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
   validates :role, presence: true
 
   mount_uploader :avatar, AvatarUploader
+  after_update :create_activity
 
   def is_user? user
     self == user
@@ -68,5 +69,10 @@ class User < ActiveRecord::Base
 
   def is_supervisor_in_actived_course?
     supervisor? && !user_courses.in_process.empty?
+  end
+
+  def create_activity
+    Activity.create user_id: id,
+      action_type: Activity.action_types[:update_profile]
   end
 end
