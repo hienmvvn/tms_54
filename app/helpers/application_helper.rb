@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def full_title page_title = ""
     base_title = t "home_page.full_title"
     page_title.empty? ? base_title: "#{page_title} | #{base_title}"
@@ -51,6 +50,18 @@ module ApplicationHelper
           task_done: user_subject.user_tasks.count,
           total_task: user_subject.subject.tasks.count),
         class: "label label-default"
+    end
+  end
+
+  def avatar_for user
+    if user.avatar.url.nil?
+      gravatar_id = Digest::MD5::hexdigest user.email.downcase
+      gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=350"
+      image_tag gravatar_url, alt: user.name, 
+        class: "img-responsive img-circle"
+    else
+      cl_image_tag user.avatar, alt: user.name, 
+        class: "img-responsive img-circle"
     end
   end
 end
