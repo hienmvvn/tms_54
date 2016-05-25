@@ -7,8 +7,13 @@
       <div class="well">
         <%= @course.description %>
       </div>
-      <br>
-      <div class="col-sm-6" id="course-status-form-<%= @course.id %>">
+      <% if can? :manage, :all %>
+        <div class="col-sm-12">
+          <%= link_to t("course.update"),
+            edit_admin_course_path(@course), class: "btn btn-info" %>
+        </div>
+      <% end %>
+      <div class="col-sm-12" id="course-status-form-<%= @course.id %>">
         <%= render "status_form", course: @course %>
       </div>
     </div>
