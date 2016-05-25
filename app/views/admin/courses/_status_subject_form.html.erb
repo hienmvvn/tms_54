@@ -4,7 +4,7 @@
     <%= f.submit t("form.finish_subject"), class: "btn btn-warning" %>
   <% elsif course_subject.free? %>
     <%= f.hidden_field :status, value: :in_process %>
-    <%= f.submit t("form.finish_subject"), class: "btn btn-info" %>
+    <%= f.submit t("form.start_subject"), class: "btn btn-info" %>
   <% else %>
     <%= f.hidden_field :status, value: :in_process %>
     <%= f.submit t("form.start_subject"), class: "btn btn-primary" %>

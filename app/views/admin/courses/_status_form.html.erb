@@ -10,7 +10,7 @@
       <%= f.submit t("form.start_course"), class: "btn btn-info" %>
     <% else %>
       <%= f.hidden_field :status, value: :in_process %>
-      <%= f.submit t("form.start_course"), class: "btn btn-primary" %>
+      <%= f.submit t("form.restart_course"), class: "btn btn-primary" %>
     <% end %>
   <% end %>
 <% end %>

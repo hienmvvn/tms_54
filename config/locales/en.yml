@@ -31,7 +31,7 @@ en:
     all_user: "All User"
     all_user_in_course: "All Trainee In Course"
     create: "Create New User"
-    cant_add_users: "Can't add users to Course, Course is started."
+    cant_add_users: "Can't add users to Course, Course is in process."
     show:
       avatar: "avatar"
       profile: "'s profile"
@@ -65,6 +65,7 @@ en:
     password: "Password"
     trainee: "Trainee"
     supervisor: "Supervisor"
+    restart_course: "Restart Course"
   flash:
     create_success: "Create Successfully"
     create_failed: "Create failed"
@@ -109,6 +110,7 @@ en:
     title:
       processing: "Course Processing"
     finished: "Finished"
+    cant_update_subject: "This course is actived, cannot update subjects"
   user_subjects:
     update:
       success: "Finish Task success"
