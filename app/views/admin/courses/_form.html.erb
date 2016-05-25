@@ -19,7 +19,13 @@
     <div class="form-group">
       <div class="row">
         <div class="col-sm-12">
-          <%= f.collection_check_boxes :subject_ids, @subjects, :id, :title %>
+          <% if @course.free? %>
+            <%= f.collection_check_boxes :subject_ids, @subjects, :id, :title %>
+          <% else %>
+            <div class="label label-warning">
+              <%= t "course.cant_update_subject" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -45,13 +51,13 @@
             <% if @course.trainee_already_in_other_actived_course.include? user %>
               <%= check_box_tag "course[user_ids][]",
                 user.id, checked = @course.users.include?(user),
-                disabled: user.is_user?(current_user) || @course.in_process? %>
+                disabled: user.is_user?(current_user) || @course.in_process? || @course.closed? %>
               <%= label_tag "course[user_ids][][#{user.id}]", user.name + " =|= " + user.role,
                 class: "label label-danger" %>
             <% else %>
               <%= check_box_tag "course[user_ids][]",
                 user.id, checked = @course.users.include?(user),
-                disabled: user.is_user?(current_user) || @course.in_process? %>
+                disabled: user.is_user?(current_user) || @course.in_process? || @course.closed? %>
               <%= label_tag "course[user_ids][][#{user.id}]", user.name + " =|= " + user.role,
                 class: "label label-primary" %>
             <% end %>
