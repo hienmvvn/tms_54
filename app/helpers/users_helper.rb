@@ -55,22 +55,22 @@ module UsersHelper
     elsif activity.finish_task?
       user_task = UserTask.find_by id: activity.target_id
       content_tag :div, t("activity.finish_task_html",
-        task: link_to(user_task.task.title,
-          user_subject_path(user_task.user_subject), 
+        user: link_to(activity.user.name, activity.user),
+        task: link_to(user_task.task.title, user_task.user_subject, 
           class: "label label-info"),
         time: time_ago_in_words(activity.created_at))
     elsif activity.finish_subject?
       user_subject = UserSubject.find_by id: activity.target_id
       content_tag :div, t("activity.finish_subject_html", 
-        subject: link_to(user_subject.subject.title,
-          user_subject_path(user_subject),
+        user: link_to(activity.user.name, activity.user),
+        subject: link_to(user_subject.subject.title, user_subject,
           class: "label label-info"),
         time: time_ago_in_words(activity.created_at))
     else activity.finish_course?
       user_course = UserCourse.find_by id: activity.target_id
       content_tag :div, t("activity.finish_course_html",
-        course: link_to(user_course.course.title, 
-          user_course_path(user_course),
+        user: link_to(activity.user.name, activity.user),
+        course: link_to(user_course.course.title, user_course,
           class: "label label-info"),
         time: time_ago_in_words(activity.created_at))
     end        

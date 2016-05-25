@@ -1,0 +1,7 @@
+<% @user_course.course.user_courses.each do |user_course| %>
+  <% user_course.all_activities.each do |activity| %>
+    <%= activity_action activity %>
+    <br/>
+    <br/>
+  <% end %>
+<% end %>

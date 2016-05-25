@@ -130,8 +130,8 @@ en:
     count_task: "%{task_done} / %{total_task}"
   activity:
     update_profile: "updated profile. %{time} ago"
-    finish_task_html: "finised task %{task} %{time} ago"
-    finish_subject_html: "finished subject %{subject} %{time} ago"
-    finish_course_html: "finished course %{course} %{time} ago"
+    finish_task_html: "%{user} finised task %{task} %{time} ago"
+    finish_subject_html: "%{user} finished subject %{subject} %{time} ago"
+    finish_course_html: "%{user} finished course %{course} %{time} ago"
     follow_html: "followed %{user} %{time} ago"
     unfollow_html: "unfollowed %{user} %{time} ago"

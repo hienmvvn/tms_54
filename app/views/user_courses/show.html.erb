@@ -5,12 +5,6 @@
 <div class="well">
   <%= @user_course.course.description %>
 </div>
-<h3><%= t "user.my_subject" %></h3>
-
-<% @user_subjects.each do |user_subject| %>
-  <p><%= user_subject_status user_subject %></p>
-<% end %>
-
 <h3>
   <%= t "user.all_user_in_course" %>
 </h3>
@@ -33,3 +27,25 @@
   </tbody>
 </table>
 <%= will_paginate @trainee_in_course %>
+<div class="row">
+  <div class="col-md-7">
+    <div class="well">
+      <h3 class="center">
+        <%= t "user.my_subject" %>
+      </h3>
+      <% @user_subjects.each do |user_subject| %>
+        <p>
+          <%= user_subject_status user_subject %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="well">
+      <h3 class="center">
+        <%= t "user.activities"%>
+      </h3>
+      <%= render "activities_course" %>
+    </div>
+  </div>
+</div>
