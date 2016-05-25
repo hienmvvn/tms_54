@@ -30,7 +30,7 @@ class Admin::CoursesController < ApplicationController
       flash[:danger] = t "flash.create_failed"
     end
     respond_to do |format|
-      format.html
+      format.html{redirect_to :back}
       format.js
     end
   end
@@ -53,7 +53,7 @@ class Admin::CoursesController < ApplicationController
         per_page: Settings.paginate.number_per_page
     end
     respond_to do |format|
-      format.html
+      format.html{redirect_to :back}
       format.js
     end
   end

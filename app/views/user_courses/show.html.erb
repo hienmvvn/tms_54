@@ -10,3 +10,26 @@
 <% @user_subjects.each do |user_subject| %>
   <p><%= user_subject_status user_subject %></p>
 <% end %>
+
+<h3>
+  <%= t "user.all_user_in_course" %>
+</h3>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>
+      <%= t "table.name" %>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @trainee_in_course.each do |trainee| %>
+      <tr>
+        <td>
+          <%= link_to(trainee.name, trainee) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @trainee_in_course %>
