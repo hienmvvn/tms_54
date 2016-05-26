@@ -1,0 +1,37 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        <%= t "table.title" %>
+      </th>
+      <th colspan="2">
+        <%= t "table.description" %>
+      </th>
+      <th>
+        <%= t "table.status" %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td>
+          <%= link_to course.title, [:admin, course] %>
+        </td>
+        <% if can? :manage, :all %>
+          <td>
+            <%= link_to t("table.update"), edit_admin_course_path(course) %>
+          </td>
+          <td>
+            <%= link_to t("table.delete"), [:admin, course], method: :delete,
+              data: {confirm: t("confirm")} %>
+          </td>
+        <% end %>
+        <td>
+          <%= course.status %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @courses, param_name: :page_course %>

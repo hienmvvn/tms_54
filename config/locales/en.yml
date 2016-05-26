@@ -91,6 +91,7 @@ en:
     update: "Update Subject"
     closed: "This subject is closed"
     in_process: "This subject is in process"
+    appears_in_course: "Appear in those courses"
   table:
     title: "Title"
     option: "Option"
@@ -99,6 +100,7 @@ en:
     update: "Update"
     name: "Name"
     no_option_available: "No Obtion available"
+    status: "Status"
   confirm: "Are you sure"
   course:
     all_course: "All Course"

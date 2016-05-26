@@ -46,7 +46,7 @@ function validateSubjectForm(){
     }
   });
   if(number_of_task < 2){
-    $('#error-number-task').html('Word answer Must have at least two answers');
+    $('#error-number-task').html('Subject Must have at least two tasks');
   }else{
     $('#error-number-task').html(null);
   }

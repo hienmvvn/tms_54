@@ -8,7 +8,12 @@
   </div>
   <div class="row">
     <div class="col-sm-12" id="subject-form-update">
-      <%= render "edit" %>
+      <ul class="alert alert-danger" id="validate-subject">
+        <li id="error-number-task"></li>
+        <li id="error-subject-title"></li>
+        <li id="error-subject-description"></li>
+      </ul>
+      <%= render "form" %>
     </div>
   </div>
 </div>
