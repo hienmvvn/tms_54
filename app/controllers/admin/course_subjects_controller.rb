@@ -16,6 +16,8 @@ class Admin::CourseSubjectsController < ApplicationController
   def show
     @tasks = @course_subject.subject.tasks.paginate page: params[:page],
       per_page: Settings.paginate.number_per_page
+    @courses = @course_subject.subject.courses.paginate page: params[:page_course],
+      per_page: Settings.paginate.number_per_page
     respond_to do |format|
       format.html
       format.js

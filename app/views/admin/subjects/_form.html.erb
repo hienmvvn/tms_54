@@ -18,9 +18,9 @@
   <%= f.fields_for :tasks do |builder| %>
     <%= render "admin/subjects/task_fields", f: builder %>
   <% end %>
-
-  <%= link_to_add_fields t("subject.create_task"), f, :tasks %>
-
+  <% unless @subject.in_actived_course? %>
+    <%= link_to_add_fields t("subject.create_task"), f, :tasks %>
+  <% end %>
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-11">
       <%= f.submit t("form.submit"), class: "btn btn-primary" %>

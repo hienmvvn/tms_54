@@ -28,4 +28,8 @@ class Subject < ActiveRecord::Base
     errors.add :description,
         I18n.t("subject.error.cannot_be_blank") unless subject_params[:description].present?
   end
+
+  def in_actived_course?
+    courses.in_process.any? || courses.closed.any?
+  end
 end
