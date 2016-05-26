@@ -14,15 +14,17 @@ en:
     welcom2: "to do this project"
 
   layout:
-    logo: "TMS-54"
+    tms: "TMS"
     home: "Home"
     user: "Users"
-    login: "Log in"
-    logout: "Log out"
+    sign_in: "Sign in"
+    sign_out: "Sign out"
     profile: "Profile"
     setting: "Settings"
     error: "Error"
     account: "Account"
+    close: "Close"
+    profile: "My Profile"
   user:
     update: "Update"
     change_password: "change password"
@@ -151,3 +153,12 @@ en:
     remove_trainee_email_subject: "Sorry ! You has remove from %{title}"
     sorry: "So sorry !"
     remove_trainee_email_body: "You have been remove from %{title}"
+  footer:
+    title: "FRAMGIA VIETNAM"
+    sub_title: "From asia to the world"
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ullamcorper sodales nulla non finibus. Pellentesque vestibulum eget risus ut tempus. Mauris at consectetur quam. In quis tempus ipsum. Fusce volutpat sit amet libero hendrerit posuere. Pellentesque sit amet dolor vitae turpis pharetra dictum. Nullam sem elit, laoreet nec magna mattis, aliquet efficitur lacus"
+    copyright: "@2016 Framgia VietNam. Design by "
+    designer: "@ngocquyhoang"
+    link: "http://ngocquyhoang.com"
+  home:
+    no_courses: "Now you don't have any course !"

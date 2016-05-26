@@ -1,21 +1,18 @@
-<div class="center jumbotron">
-<% if user_signed_in? %>
-  <h3><%= t "user.my_course" %> </h3>
+<h2 class="flow-text center-align" >
+  <%= t "user.my_course" %>
+</h2>
+<% if @courses.present? %>
   <% @courses.each do |user_course| %>
     <p>
       <%= user_course_status user_course %>
     </p>
   <% end %>
 <% else %>
-  <h1><%= t "home_page.welcom" %></h1>
-  <h2>
-    <%= t "home_page.welcom1" %>
-    <a href="http://www.railstutorial.org/"><%= t "ruby_on_rails" %></a>
-    <%= t "home_page.welcom2" %>
-  </h2>
+  <div class="center-align">
+    <h4 class="flow-text">
+      <%= t "home.no_courses" %>
+    </h4>
+    <%= image_tag "no_courses.png", 
+      class: "main-page-image section-m-20" %>
+  </div>
 <% end %>
-</div>
-<div class="center">
-  <%= link_to image_tag("rails.png", alt: t("home_page.rails_logo")),
-    "http://rubyonrails.org/images/rubyrails.png" %>
-</div>
