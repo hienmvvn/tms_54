@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :user_courses, only: [:show]
   resources :user_subjects, only: [:show, :update]
   resources :user_subjects, only: [:show]
-  resources :courses, only: [:show]
+  resources :user_courses, only: [:show]
   resources :relationships, only: [:create, :destroy]
   
   namespace :admin do
