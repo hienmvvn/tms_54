@@ -14,6 +14,7 @@ class Ability
       can :manage, Activity, user_id: user.id
     end
     if user.supervisor?
+      can :read, User, id: User.supervisor.ids
       can [:update, :edit, :show, :index], Course, id: user.course_ids
       can [:update, :show], CourseSubject, course_id: user.course_ids
     end
