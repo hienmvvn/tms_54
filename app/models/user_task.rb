@@ -19,9 +19,14 @@ class UserTask < ActiveRecord::Base
   end
 
   def all_subjects_was_finished?
-    user_subject.user.user_subjects.select{|user_subject| user_subject.finished? &&
-      user_subject.id == user_subject_id}
-      .count == user_subject.user_course.course.subjects.count
+    count_finished_subject = 0
+    user_course = user_subject.user_course
+    user_subject.user.user_subjects.each do |user_subject|
+      if user_subject.finished? && user_subject.user_course == user_course
+        count_finished_subject += 1
+      end
+    end
+    count_finished_subject == user_subject.user_course.course.subjects.count
   end
 
   def finish_course
