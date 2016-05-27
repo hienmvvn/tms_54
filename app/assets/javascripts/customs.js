@@ -51,3 +51,20 @@ function validateSubjectForm(){
     $('#error-number-task').html(null);
   }
 }
+
+$(window).load(function() {
+  $('#pre-loader').fadeOut(750);
+});
+
+$(document).ready(function(){
+  $('.button-collapse').sideNav();
+  close_nav();
+  $('.modal-trigger').leanModal({dismissible: true});
+  $('ul.tabs').tabs();
+})
+
+function close_nav() {
+  $('a.close-nav').click(function(){
+    $('.button-collapse').sideNav('hide');
+  });
+}

@@ -1,13 +1,36 @@
-<footer class="footer">
-  <small>
-    <%= t "home_page.the" %>
-    <a href="http://www.railstutorial.org/"><%= t "home_page.ruby_on_rails_tutorial" %></a>
-    <%= t "home_page.by" %><a href="http://www.michaelhartl.com/">
-    <%= t "home_page.michael_hartl" %></a>
-  </small>
-  <nav>
-    <ul>
-      <li><a href="http://news.railstutorial.org/"><%= t "home_page.news" %></a></li>
-    </ul>
-  </nav>
+<footer class="red lighten-2">
+  <div class="container">
+    <div class="row section-p-20 margin-bottom-0">
+      <div class="col s12 m12 l4">
+        <div class="center-align">
+          <a href="/">
+            <%= image_tag "framgia_logo.png", class: "responsive-img" %>
+          </a>
+        </div>
+      </div>
+      <div class="col s12 m12 l8">
+        <div class="center-align white-text">
+          <h2 class="flow-text">
+            <%= t "footer.title" %>
+          </h2>
+          <h3 class="sub-title">
+            <%= t "footer.sub_title" %>
+          </h3>
+          <p class="left-align">
+            <%= t "footer.content" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
+<div class="sub-footer red lighten-1">
+  <div class="container section-p-10">
+    <p class="center-align white-text margin-0">
+      <%= t "footer.copyright" %> 
+      <a href=<%= t "footer.link" %> class="orange-text">
+        <%= t "footer.designer" %>
+      </a>
+    </p>
+  </div>
+</div>

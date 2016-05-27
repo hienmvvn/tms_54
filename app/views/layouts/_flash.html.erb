@@ -1,3 +1,7 @@
-<% flash.each do |notice_type, notice| %>
-  <div class="alert alert-<%= notice_type %>"><%= notice %></div>
-<% end %>
+<div class="container">
+  <% flash.each do |type, notice| %>
+    <div class="card-panel <%= notice_type type %> lighten-1">
+      <span class="white-text"><%= notice %></span>
+    </div>
+  <% end %>
+</div>

@@ -64,4 +64,8 @@ module ApplicationHelper
         class: "img-responsive img-circle"
     end
   end
+
+  def notice_type type
+    type == "danger" ? "red" : "green"  
+  end
 end
